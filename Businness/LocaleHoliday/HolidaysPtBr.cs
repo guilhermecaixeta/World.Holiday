@@ -39,7 +39,7 @@ namespace HoliDayDate.Locale.PtBr
             return isHoliday;
         }
 
-        private static bool IsMotherDays(this DateTime date)
+        public static bool IsMotherDays(this DateTime date)
         {
             int countSunday = 0;
             DateTime firstDayMonth = new DateTime(date.Year, date.Month, 1);
@@ -54,7 +54,7 @@ namespace HoliDayDate.Locale.PtBr
             return false;
         }
 
-        private static DateTime CalculateMobileHolidays(this DateTime date)
+        public static DateTime CalculateMobileHolidays(this DateTime date)
         {
             int y = date.Year;
             int c = y / 100;
@@ -72,9 +72,9 @@ namespace HoliDayDate.Locale.PtBr
             return pascoa;
         }
 
-        private static bool IsCarnaval(this DateTime date) => CalculateMobileHolidays(date).AddDays(-47).Date.Equals(date.Date);
-        private static bool IsSextaSanta(this DateTime date) => CalculateMobileHolidays(date).AddDays(-2).Date.Equals(date.Date);
-        private static bool IsCorpusCristi(this DateTime date) => CalculateMobileHolidays(date).AddDays(60).Date.Equals(date.Date);
-        private static bool IsPascoa(this DateTime date) => CalculateMobileHolidays(date).Date.Equals(date.Date);
+        public static bool IsCarnaval(this DateTime date) => CalculateMobileHolidays(date).AddDays(-47).Date.Equals(date.Date);
+        public static bool IsSextaSanta(this DateTime date) => CalculateMobileHolidays(date).AddDays(-2).Date.Equals(date.Date);
+        public static bool IsCorpusCristi(this DateTime date) => CalculateMobileHolidays(date).AddDays(60).Date.Equals(date.Date);
+        public static bool IsPascoa(this DateTime date) => CalculateMobileHolidays(date).Date.Equals(date.Date);
     }
 }

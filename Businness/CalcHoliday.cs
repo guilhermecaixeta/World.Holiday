@@ -18,7 +18,6 @@ namespace HoliDayDate.CalcHoliday
                         break;
                     case LocaleHoliday.enUS:
                         return false;
-                        break;
                 }
             }
             return isHoliday;
