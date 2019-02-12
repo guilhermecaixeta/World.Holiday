@@ -1,4 +1,5 @@
 using System;
+using HoliDayDate.Entity;
 using HoliDayDate.Enums;
 using HoliDayDate.Locale.PtBr;
 
@@ -6,7 +7,8 @@ namespace HoliDayDate.CalcHoliday
 {
     public static class CalcHoliday
     {
-        public static bool TodayIsAHoliday(this DateTime today, LocaleHoliday localeHoliday)
+        private static DateTimeHoliday dateReturn;
+        public static DateTimeHoliday TodayIsAHoliday(this DateTime today, LocaleHoliday localeHoliday)
         {
             bool isHoliday = today.WorldHoliday();
             if (!isHoliday)
@@ -23,7 +25,7 @@ namespace HoliDayDate.CalcHoliday
             return isHoliday;
         }
 
-        private static bool WorldHoliday(this DateTime today)
+        private static DateTimeHoliday WorldHoliday(this DateTime today)
         {
             switch (today.Month)
             {

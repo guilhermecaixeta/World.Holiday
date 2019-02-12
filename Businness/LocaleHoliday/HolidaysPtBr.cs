@@ -1,59 +1,76 @@
 using System;
+using HoliDayDate.Entity;
 
 namespace HoliDayDate.Locale.PtBr
 {
     public static class HolidaysPtBr
     {
+        private static DateTimeHoliday dateReturn;
         private const int _numberOfSunday = 2;
         private static DateTime pascoa;
-        public static bool VerifyHolidaysPtBr(this DateTime date)
+        public static DateTimeHoliday VerifyHolidaysPtBr(this DateTime date)
         {
-            bool isHoliday = false;
+            dateReturn = new DateTimeHoliday(date, false, "");
             date.CalculateMobileHolidays();
 
             switch (date.Month)
             {
                 case 2:
                     if (date.IsCarnaval())
-                        isHoliday = true;
+                    {
+                        dateReturn = date.ReturnNewDateType(true, "Carnaval");
+                    }
                     break;
                 case 3:
-                    if (date.IsCarnaval() || (date.Day >= 22 && date.IsPascoa()))
-                        isHoliday = true;
+                    if (date.IsCarnaval())
+                        dateReturn = date.ReturnNewDateType(true, "Carnaval");
+                    else if (date.IsSextaSanta())
+                        dateReturn = date.ReturnNewDateType(true, "Sexta-Feira Santa");
+                    else if (date.Day >= 22 && date.IsPascoa())
+                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
                     break;
                 case 4:
-                    if (date.Day == 21 || date.IsSextaSanta() || date.IsPascoa())
-                        isHoliday = true;
+                    if (date.Day == 21)
+                        dateReturn = date.ReturnNewDateType(true, "Tiradentes");
+                    else if (date.IsSextaSanta())
+                        dateReturn = date.ReturnNewDateType(true, "Sexta-Feira Santa");
+                    else if (date.IsPascoa())
+                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
+
                     break;
                 case 5:
-                    if (date.Day == 1 || date.IsAMobileHoliday(_numberOfSunday, DayOfWeek.Sunday) || date.IsCorpusCristi())
-                        isHoliday = true;
+                    if (date.Day == 1)
+                        dateReturn = date.ReturnNewDateType(true, "Dia do Trabalhador");
+                    else if (date.IsAMobileHoliday(_numberOfSunday, DayOfWeek.Sunday))
+                        dateReturn = date.ReturnNewDateType(true, "Dia das Mães");
+                    else if (date.IsCorpusCristi())
+                        dateReturn = date.ReturnNewDateType(true, "Corpus Cristi");
                     break;
                 case 6:
                     if (date.IsCorpusCristi() || date.Day.Equals(24))
-                        isHoliday = true;
+                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
                     break;
                 case 8:
                     if (date.IsAMobileHoliday(_numberOfSunday, DayOfWeek.Sunday))
-                        isHoliday = true;
-                    break;                    
+                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
+                    break;
                 case 9:
                     if (date.Day.Equals(7))
-                        isHoliday = true;
+                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
                     break;
                 case 10:
                     if (date.Day.Equals(12))
-                        isHoliday = true;
+                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
                     break;
                 case 11:
                     if (date.Day.Equals(2) || date.Day.Equals(15) || date.Day.Equals(20))
-                        isHoliday = true;
+                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
                     break;
             }
-            return isHoliday;
+            return dateReturn;
         }
 
-         public static bool IsAMobileHoliday(this DateTime date, int numCountDays, DayOfWeek dayOfWeek)
+        public static bool IsAMobileHoliday(this DateTime date, int numCountDays, DayOfWeek dayOfWeek)
         {
             int countSunday = 0;
             DateTime firstDayMonth = new DateTime(date.Year, date.Month, 1);
@@ -91,5 +108,7 @@ namespace HoliDayDate.Locale.PtBr
         public static bool IsSextaSanta(this DateTime date) => EasterDate().AddDays(-2).Date.Equals(date.Date);
         public static bool IsCorpusCristi(this DateTime date) => EasterDate().AddDays(60).Date.Equals(date.Date);
         public static bool IsPascoa(this DateTime date) => pascoa.Date.Equals(date.Date);
+
+        public static DateTimeHoliday ReturnNewDateType(this DateTime date, bool isHoliday, string nameHoliday) => new DateTimeHoliday(date, isHoliday, nameHoliday);
     }
 }

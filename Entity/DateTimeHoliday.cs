@@ -2,7 +2,7 @@ using System;
 
 namespace HoliDayDate.Entity
 {
-    public class DateTimeHoliday
+    public struct DateTimeHoliday
     {
         public DateTime Date {get; private set;}
         public bool IsHoliday { get; private set; }
