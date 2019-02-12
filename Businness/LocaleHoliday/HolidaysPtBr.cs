@@ -5,14 +5,24 @@ namespace HoliDayDate.Locale.PtBr
     public static class HolidaysPtBr
     {
         private const int numberOfSunday = 2;
-
+        private static DateTime pascoa;
         public static bool VerifyHolidaysPtBr(this DateTime date)
         {
             bool isHoliday = false;
+            date.CalculateMobileHolidays();
+            
             switch (date.Month)
             {
-                case 2 | 3 | 4:
-                    if ((date.Day == 21 && date.Month == 4) || date.IsCarnaval() || date.IsSextaSanta() || date.IsPascoa())
+                case 2:
+                    if (date.IsCarnaval())
+                        isHoliday = true;
+                    break;
+                case 3:
+                    if (date.IsCarnaval() || date.IsPascoa())
+                        isHoliday = true;
+                    break;
+                case 4:
+                    if ((date.Day == 21 && date.Month == 4) || date.IsSextaSanta() || date.IsPascoa())
                         isHoliday = true;
                     break;
                 case 5:
@@ -54,7 +64,7 @@ namespace HoliDayDate.Locale.PtBr
             return false;
         }
 
-        public static DateTime CalculateMobileHolidays(this DateTime date)
+        public static void CalculateMobileHolidays(this DateTime date)
         {
             int y = date.Year;
             int c = y / 100;
@@ -68,13 +78,12 @@ namespace HoliDayDate.Locale.PtBr
             int l = i - j;
             int m = 3 + ((1 + 40) / 44);
             int d = l + 28 - (31 * (m / 4));
-            var pascoa = new DateTime(date.Year, m, d);
-            return pascoa;
+            pascoa = new DateTime(date.Year, m, d);
         }
 
-        public static bool IsCarnaval(this DateTime date) => CalculateMobileHolidays(date).AddDays(-47).Date.Equals(date.Date);
-        public static bool IsSextaSanta(this DateTime date) => CalculateMobileHolidays(date).AddDays(-2).Date.Equals(date.Date);
-        public static bool IsCorpusCristi(this DateTime date) => CalculateMobileHolidays(date).AddDays(60).Date.Equals(date.Date);
-        public static bool IsPascoa(this DateTime date) => CalculateMobileHolidays(date).Date.Equals(date.Date);
+        public static bool IsCarnaval(this DateTime date) => pascoa.AddDays(-47).Date.Equals(date.Date);
+        public static bool IsSextaSanta(this DateTime date) => pascoa.AddDays(-2).Date.Equals(date.Date);
+        public static bool IsCorpusCristi(this DateTime date) => pascoa.AddDays(60).Date.Equals(date.Date);
+        public static bool IsPascoa(this DateTime date) => pascoa.Date.Equals(date.Date);
     }
 }
