@@ -4,7 +4,7 @@ namespace HoliDayDate.Locale.PtBr
 {
     public static class HolidaysPtBr
     {
-        private const int numberOfSunday = 2;
+        private const int _numberOfSunday = 2;
         private static DateTime pascoa;
         public static bool VerifyHolidaysPtBr(this DateTime date)
         {
@@ -22,17 +22,21 @@ namespace HoliDayDate.Locale.PtBr
                         isHoliday = true;
                     break;
                 case 4:
-                    if (date.Day == 21 || date.IsPascoa() || (date.Day > 25 && date.IsSextaSanta()))
+                    if (date.Day == 21 || date.IsSextaSanta() || date.IsPascoa())
                         isHoliday = true;
                     break;
                 case 5:
-                    if (date.Day == 1 || date.IsMotherDays() || date.IsCorpusCristi())
+                    if (date.Day == 1 || date.IsAMobileHoliday(_numberOfSunday, DayOfWeek.Sunday) || date.IsCorpusCristi())
                         isHoliday = true;
                     break;
                 case 6:
                     if (date.IsCorpusCristi() || date.Day.Equals(24))
                         isHoliday = true;
                     break;
+                case 8:
+                    if (date.IsAMobileHoliday(_numberOfSunday, DayOfWeek.Sunday))
+                        isHoliday = true;
+                    break;                    
                 case 9:
                     if (date.Day.Equals(7))
                         isHoliday = true;
@@ -49,17 +53,17 @@ namespace HoliDayDate.Locale.PtBr
             return isHoliday;
         }
 
-        public static bool IsMotherDays(this DateTime date)
+         public static bool IsAMobileHoliday(this DateTime date, int numCountDays, DayOfWeek dayOfWeek)
         {
             int countSunday = 0;
             DateTime firstDayMonth = new DateTime(date.Year, date.Month, 1);
             for (int i = 0; i <= new DateTime(date.Year, date.Month, firstDayMonth.AddMonths(1).AddDays(-1).Day).Day; i++)
             {
-                if (firstDayMonth.DayOfWeek == DayOfWeek.Sunday)
+                if (firstDayMonth.DayOfWeek == dayOfWeek)
                     countSunday++;
-                if (countSunday == numberOfSunday && firstDayMonth.Day == date.Day)
+                if (countSunday == numCountDays && firstDayMonth.Day == date.Day)
                     return true;
-                else firstDayMonth.AddDays(1);
+                else firstDayMonth = firstDayMonth.AddDays(1);
             }
             return false;
         }
@@ -72,11 +76,11 @@ namespace HoliDayDate.Locale.PtBr
             int k = (c - 17) / 25;
             int i = c - c / 4 - ((c - k) / 3) + (19 * n) + 15;
             i = i - (30 * (i / 30));
-            i = i - ((i / 28) * (1 - (i / 28)) * (29 / (i + 1)) * ((21 - n) / 11));
+            i = i - ((i / 28) * (1 - (i / 28)) * (29 / (i + 1)) * ((21 - n) / 11));  //((i / 28) * (1 - (i / 28)) * (29 / (i + 1)) * ((21 - n) / 11));
             int j = y + y / 4 + i + 2 - c + c / 4;
             j = j - ((7 * (j / 7)));
             int l = i - j;
-            int m = 3 + ((1 + 40) / 44);
+            int m = 3 + ((l + 40) / 44);
             int d = l + 28 - (31 * (m / 4));
             pascoa = new DateTime(date.Year, m, d);
         }
