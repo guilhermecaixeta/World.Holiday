@@ -1,16 +1,17 @@
 using System;
 using HoliDayDate.Entity;
 using HoliDayDate.Enums;
-using HoliDayDate.Locale.PtBr;
+using HoliDayDate.Locale;
+using HoliDayDate.Locale.CommomMethod;
 
 namespace HoliDayDate.CalcHoliday
 {
     public static class CalcHoliday
     {
-        private static DateTimeHoliday dateReturn;
+        private static DateTimeHoliday dateReturn = new DateTimeHoliday(new DateTime(), false, "");
         public static DateTimeHoliday TodayIsAHoliday(this DateTime today, LocaleHoliday localeHoliday)
         {
-            today.WorldHoliday();
+            today.WorldHoliday(localeHoliday);
             if (!dateReturn.IsHoliday)
             {
                 switch (localeHoliday)
@@ -19,13 +20,14 @@ namespace HoliDayDate.CalcHoliday
                         dateReturn = today.VerifyHolidaysPtBr();
                         break;
                     case LocaleHoliday.enUS:
-                        return dateReturn;
+                        dateReturn = today.VerifyHolidaysEnUs();
+                        break;
                 }
             }
             return dateReturn;
         }
 
-        private static DateTimeHoliday WorldHoliday(this DateTime date)
+        private static DateTimeHoliday WorldHoliday(this DateTime date, LocaleHoliday localeHoliday)
         {
             switch (date.Month)
             {
@@ -35,10 +37,7 @@ namespace HoliDayDate.CalcHoliday
                     break;
                 case 12:
                     if (date.Day == 25)
-                        dateReturn = date.ReturnNewDateType(true, "Ano Novo");
-                    break;
-                default:
-                    dateReturn = date.ReturnNewDateType(false, "");
+                        dateReturn = date.ReturnNewDateType(true, "Natal");
                     break;
             }
             return dateReturn;
