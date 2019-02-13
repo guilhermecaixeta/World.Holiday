@@ -24,3 +24,8 @@ Returning JSON like this
 }
 */
 ```
+
+
+## Status unity test on Travis 
+
+[![Build Status](https://travis-ci.org/guilhermecaixeta/VerifyWorldHolidays.svg?branch=master)](https://travis-ci.org/guilhermecaixeta/VerifyWorldHolidays)
