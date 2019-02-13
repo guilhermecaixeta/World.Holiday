@@ -6,12 +6,12 @@ namespace HoliDayDate.Entity
     {
         public DateTime Date {get; private set;}
         public bool IsHoliday { get; private set; }
-        public string NameHoliday { get; private set; }
-        public DateTimeHoliday(DateTime date, bool isHoliday, string nameHoliday)
+        public string HolidayName { get; private set; }
+        public DateTimeHoliday(DateTime date, bool isHoliday, string holidayName)
         {
             Date = date;
             IsHoliday = isHoliday;
-            NameHoliday = nameHoliday;
+            HolidayName = holidayName;
         }
     }
 }

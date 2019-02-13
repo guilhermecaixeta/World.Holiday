@@ -10,35 +10,38 @@ namespace HoliDayDate.CalcHoliday
         private static DateTimeHoliday dateReturn;
         public static DateTimeHoliday TodayIsAHoliday(this DateTime today, LocaleHoliday localeHoliday)
         {
-            bool isHoliday = today.WorldHoliday();
-            if (!isHoliday)
+            today.WorldHoliday();
+            if (!dateReturn.IsHoliday)
             {
                 switch (localeHoliday)
                 {
                     case LocaleHoliday.ptBr:
-                        isHoliday = today.VerifyHolidaysPtBr();
+                        dateReturn = today.VerifyHolidaysPtBr();
                         break;
                     case LocaleHoliday.enUS:
-                        return false;
+                        return dateReturn;
                 }
             }
-            return isHoliday;
+            return dateReturn;
         }
 
-        private static DateTimeHoliday WorldHoliday(this DateTime today)
+        private static DateTimeHoliday WorldHoliday(this DateTime date)
         {
-            switch (today.Month)
+            switch (date.Month)
             {
                 case 1:
-                    if (today.Day == 1)
-                        return true;
-                    else return false;
+                    if (date.Day == 1)
+                        dateReturn = date.ReturnNewDateType(true, "Ano Novo");
+                    break;
                 case 12:
-                    if (today.Day == 25)
-                        return true;
-                    else return false;
-                default: return false;
+                    if (date.Day == 25)
+                        dateReturn = date.ReturnNewDateType(true, "Ano Novo");
+                    break;
+                default:
+                    dateReturn = date.ReturnNewDateType(false, "");
+                    break;
             }
+            return dateReturn;
         }
     }
 }

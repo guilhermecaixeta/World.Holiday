@@ -47,30 +47,36 @@ namespace HoliDayDate.Locale.PtBr
                         dateReturn = date.ReturnNewDateType(true, "Corpus Cristi");
                     break;
                 case 6:
-                    if (date.IsCorpusCristi() || date.Day.Equals(24))
-                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
+                    if (date.IsCorpusCristi())
+                        dateReturn = date.ReturnNewDateType(true, "Corpus Cristi");
+                    else if (date.Day.Equals(24))
+                        dateReturn = date.ReturnNewDateType(true, "São João");
                     break;
                 case 8:
                     if (date.IsAMobileHoliday(_numberOfSunday, DayOfWeek.Sunday))
-                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
+                        dateReturn = date.ReturnNewDateType(true, "Dia dos Pais");
                     break;
                 case 9:
                     if (date.Day.Equals(7))
-                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
+                        dateReturn = date.ReturnNewDateType(true, "Independência do Brasil");
                     break;
                 case 10:
                     if (date.Day.Equals(12))
-                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
+                        dateReturn = date.ReturnNewDateType(true, "Dia das Crianças");
                     break;
                 case 11:
-                    if (date.Day.Equals(2) || date.Day.Equals(15) || date.Day.Equals(20))
-                        dateReturn = date.ReturnNewDateType(true, "Páscoa");
+                    if (date.Day.Equals(2))
+                        dateReturn = date.ReturnNewDateType(true, "Dia de Finados");
+                    else if (date.Day.Equals(15))
+                        dateReturn = date.ReturnNewDateType(true, "Proclamação da República");
+                    else if (date.Day.Equals(20))
+                        dateReturn = date.ReturnNewDateType(true, "Dia da Consciência Negra");
                     break;
             }
             return dateReturn;
         }
 
-        public static bool IsAMobileHoliday(this DateTime date, int numCountDays, DayOfWeek dayOfWeek)
+        private static bool IsAMobileHoliday(this DateTime date, int numCountDays, DayOfWeek dayOfWeek)
         {
             int countSunday = 0;
             DateTime firstDayMonth = new DateTime(date.Year, date.Month, 1);
@@ -85,7 +91,7 @@ namespace HoliDayDate.Locale.PtBr
             return false;
         }
 
-        public static void CalculateMobileHolidays(this DateTime date)
+        private static void CalculateMobileHolidays(this DateTime date)
         {
             int y = date.Year;
             int c = y / 100;
@@ -102,12 +108,12 @@ namespace HoliDayDate.Locale.PtBr
             pascoa = new DateTime(date.Year, m, d);
         }
 
-        public static DateTime EasterDate() => pascoa;
-        public static bool IsCarnaval(this DateTime date) => EasterDate().AddDays(-47).Date.Equals(date.Date);
-        public static bool IsQuartaCinza(this DateTime date) => EasterDate().AddDays(-46).Date.Equals(date.Date);
-        public static bool IsSextaSanta(this DateTime date) => EasterDate().AddDays(-2).Date.Equals(date.Date);
-        public static bool IsCorpusCristi(this DateTime date) => EasterDate().AddDays(60).Date.Equals(date.Date);
-        public static bool IsPascoa(this DateTime date) => pascoa.Date.Equals(date.Date);
+        private static DateTime EasterDate() => pascoa;
+        private static bool IsCarnaval(this DateTime date) => EasterDate().AddDays(-47).Date.Equals(date.Date);
+        private static bool IsQuartaCinza(this DateTime date) => EasterDate().AddDays(-46).Date.Equals(date.Date);
+        private static bool IsSextaSanta(this DateTime date) => EasterDate().AddDays(-2).Date.Equals(date.Date);
+        private static bool IsCorpusCristi(this DateTime date) => EasterDate().AddDays(60).Date.Equals(date.Date);
+        private static bool IsPascoa(this DateTime date) => pascoa.Date.Equals(date.Date);
 
         public static DateTimeHoliday ReturnNewDateType(this DateTime date, bool isHoliday, string nameHoliday) => new DateTimeHoliday(date, isHoliday, nameHoliday);
     }
