@@ -1,8 +1,8 @@
 language: csharp
 solution: VerifyWorldHolidays.sln
-install:
-  - curl -sSL https://raw.githubusercontent.com/guilhermecaixeta/VerifyWorldHolidays/master/VerifyWorldHolidays.sln | sh && source ~/.k/kvm/kvm.sh
-  - kvm upgrade
-  - kpm restore --no-cache
-script:
-  - k test -parallel none
+
+matrix:
+  include:
+    - dotnet: 2.2
+      mono: none
+    - mono: latest
