@@ -5,6 +5,7 @@ using System;
 
 namespace Tests
 {
+    [TestFixture]
     public class Test_Holidays
     {
         [TestCase(2019, 4, 21, LocaleHoliday.ptBr)]
