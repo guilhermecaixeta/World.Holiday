@@ -8,9 +8,18 @@ using HoliDayDate.Locale.Dictionary;
 
 namespace HoliDayDate.CalcHoliday
 {
+    /// <summary>
+    /// Extension class to verify holiday
+    /// </summary>
     public static class CalcHoliday
     {
         private static DateTimeHoliday dateReturn = new DateTimeHoliday(new DateTime(), false, "");
+        /// <summary>
+        /// Verify holidays around world
+        /// </summary>
+        /// <param name="today">Day to verify</param>
+        /// <param name="localeHoliday">Locale of holiday</param>
+        /// <returns></returns>
         public static DateTimeHoliday TodayIsAHoliday(this DateTime today, LocaleHoliday localeHoliday)
         {
             today.WorldHoliday(localeHoliday);
@@ -29,6 +38,13 @@ namespace HoliDayDate.CalcHoliday
             return dateReturn;
         }
 
+        /// <summary>
+        /// Verify if the informed day is new year or christmas. 
+        /// This method is executed always if a verify is executed. 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="localeHoliday"></param>
+        /// <returns></returns>
         private static DateTimeHoliday WorldHoliday(this DateTime date, LocaleHoliday localeHoliday)
         {
             Dictionary<LocaleHoliday, string> holiday = new Dictionary<LocaleHoliday, string>();

@@ -4,6 +4,9 @@ using HoliDayDate.Enums;
 
 namespace HoliDayDate.Locale.Dictionary
 {
+    /// <summary>
+    /// Informing world holiday
+    /// </summary>
     public static class DictionaryHolidayWorld
     {
         public static readonly Dictionary<int, Dictionary<int, Dictionary<LocaleHoliday, string>>> Holidays = new Dictionary<int, Dictionary<int, Dictionary<LocaleHoliday, string>>>()

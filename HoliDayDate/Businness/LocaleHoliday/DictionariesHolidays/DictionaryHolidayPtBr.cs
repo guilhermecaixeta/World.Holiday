@@ -3,6 +3,9 @@ using HoliDayDate.Entity;
 
 namespace HoliDayDate.Locale.Dictionary
 {
+    /// <summary>
+    /// Inform brazilian's holidays.
+    /// </summary>
     public static class DictionaryHolidayPtBR
     {
         public static readonly Dictionary<int, Dictionary<int, Holiday>> Holidays = new Dictionary<int, Dictionary<int, Holiday>>()
