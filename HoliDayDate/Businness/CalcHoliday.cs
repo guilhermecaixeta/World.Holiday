@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using HoliDayDate.Entity;
 using HoliDayDate.Enums;
 using HoliDayDate.Locale;
 using HoliDayDate.Locale.CommomMethod;
+using HoliDayDate.Locale.Dictionary;
 
 namespace HoliDayDate.CalcHoliday
 {
@@ -29,17 +31,15 @@ namespace HoliDayDate.CalcHoliday
 
         private static DateTimeHoliday WorldHoliday(this DateTime date, LocaleHoliday localeHoliday)
         {
-            switch (date.Month)
+            Dictionary<LocaleHoliday, string> holiday = new Dictionary<LocaleHoliday, string>();
+            bool result = DictionaryHolidayWorld.Holidays.TryGetValue(date.Month, out Dictionary<int, Dictionary<LocaleHoliday, string>> holidays) ?
+            holidays.TryGetValue(date.Day, out holiday) : false;
+
+            if (result && holiday.TryGetValue(localeHoliday, out string holidayName))
             {
-                case 1:
-                    if (date.Day == 1)
-                        dateReturn = date.ReturnNewDateType(true, "Ano Novo");
-                    break;
-                case 12:
-                    if (date.Day == 25)
-                        dateReturn = date.ReturnNewDateType(true, "Natal");
-                    break;
+                dateReturn = date.ReturnNewDateType(true, holidayName);
             }
+
             return dateReturn;
         }
     }

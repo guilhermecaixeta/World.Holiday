@@ -1,22 +1,33 @@
 using System.Collections.Generic;
 using HoliDayDate.Entity;
+using HoliDayDate.Enums;
 
 namespace HoliDayDate.Locale.Dictionary
 {
     public static class DictionaryHolidayWorld
     {
-        public static readonly Dictionary<int, Dictionary<int, Holiday>> Holidays = new Dictionary<int, Dictionary<int, Holiday>>()
+        public static readonly Dictionary<int, Dictionary<int, Dictionary<LocaleHoliday, string>>> Holidays = new Dictionary<int, Dictionary<int, Dictionary<LocaleHoliday, string>>>()
         {
             {
-                1, new Dictionary<int, Holiday>()
+                1, new Dictionary<int, Dictionary<LocaleHoliday, string>>()
                 {
-                    {1, new Holiday("Ano Novo")}
+                    {1, new Dictionary<LocaleHoliday, string>()
+                        {
+                            {LocaleHoliday.ptBr, "Ano Novo"},
+                            {LocaleHoliday.enUS, "New Year's Day"}
+                        }
+                    }
                 }
             },
             {
-                12, new Dictionary<int, Holiday>()
+                12, new Dictionary<int, Dictionary<LocaleHoliday, string>>()
                 {
-                    {14, new Holiday("Natal")},
+                    {25, new Dictionary<LocaleHoliday, string>()
+                        {
+                            {LocaleHoliday.ptBr, "Natal"},
+                            {LocaleHoliday.enUS, "Christmas Day"}
+                        }
+                    }
                 }
             }
         };
