@@ -14,7 +14,7 @@ namespace HoliDayDate.Locale.Dictionary
                 4, new Dictionary<int, Holiday>()
                 {
                     {
-                        21, new Holiday("Tiradentes")
+                        21, new Holiday("Tiradentes", true)
                     }
                 }
             },
@@ -22,7 +22,7 @@ namespace HoliDayDate.Locale.Dictionary
                 5, new Dictionary<int, Holiday>()
                 {
                     {
-                        1, new Holiday("Dia do Trabalhador")
+                        1, new Holiday("Dia do Trabalhador", true)
                     }
                 }
             },
@@ -30,7 +30,7 @@ namespace HoliDayDate.Locale.Dictionary
                 6, new Dictionary<int, Holiday>()
                 {
                     {
-                        24, new Holiday("São João")
+                        24, new Holiday("São João", true)
                     }
                 }
             },
@@ -38,7 +38,7 @@ namespace HoliDayDate.Locale.Dictionary
                 9, new Dictionary<int, Holiday>()
                 {
                     {
-                        7, new Holiday("Independência do Brasil")
+                        7, new Holiday("Independência do Brasil", true)
                     }
                 }
             },
@@ -46,7 +46,7 @@ namespace HoliDayDate.Locale.Dictionary
                 10, new Dictionary<int, Holiday>()
                 {
                     {
-                        10, new Holiday("Dia das Crianças")
+                        10, new Holiday("Dia das Crianças", true)
                     }
                 }
             },
@@ -54,14 +54,14 @@ namespace HoliDayDate.Locale.Dictionary
                 11, new Dictionary<int, Holiday>()
                 {
                     {
-                        2, new Holiday("Dia de Finados")
+                        2, new Holiday("Dia de Finados", true)
 
                     },
                                         {
-                        15, new Holiday("Proclamação da República")
+                        15, new Holiday("Proclamação da República", true)
                     },
                                         {
-                        20, new Holiday("Dia da Consciência Negra")
+                        20, new Holiday("Dia da Consciência Negra", true)
                     }
                 }
             },

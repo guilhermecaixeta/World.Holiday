@@ -13,7 +13,7 @@ namespace HoliDayDate.CalcHoliday
     /// </summary>
     public static class CalcHoliday
     {
-        private static DateTimeHoliday dateReturn = new DateTimeHoliday(new DateTime(), false, "");
+        private static DateTimeHoliday dateReturn;
         /// <summary>
         /// Verify holidays around world
         /// </summary>
@@ -22,6 +22,7 @@ namespace HoliDayDate.CalcHoliday
         /// <returns></returns>
         public static DateTimeHoliday TodayIsAHoliday(this DateTime today, LocaleHoliday localeHoliday)
         {
+            dateReturn = new DateTimeHoliday(today, false, "");
             today.WorldHoliday(localeHoliday);
             if (!dateReturn.IsHoliday)
             {

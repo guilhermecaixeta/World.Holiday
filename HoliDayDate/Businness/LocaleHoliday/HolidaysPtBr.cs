@@ -8,11 +8,12 @@ namespace HoliDayDate.Locale
 {
     public static class HolidaysPtBr
     {
-        private static DateTimeHoliday dateReturn = new DateTimeHoliday(new DateTime(), false, "");
+        private static DateTimeHoliday dateReturn;
         private const int _numberOfSunday = 2;
         public static DateTimeHoliday VerifyHolidaysPtBr(this DateTime date)
         {
-            Holiday holiday = new Holiday(null);
+            dateReturn = new DateTimeHoliday(date, false, "");
+            Holiday holiday = new Holiday(null, false);
             bool result = DictionaryHolidayPtBR.Holidays.TryGetValue(date.Month, out Dictionary<int, Holiday> holidays)? 
             holidays.TryGetValue(date.Day, out holiday) : false;
             if (!result)
@@ -54,7 +55,7 @@ namespace HoliDayDate.Locale
                         break;
                 }
             }
-            else
+            else if(holiday != null && holiday.isHoliday)
             {
                 dateReturn = date.ReturnNewDateType(holiday.isHoliday, holiday.nameHoliday);
             }

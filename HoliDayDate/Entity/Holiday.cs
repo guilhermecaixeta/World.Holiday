@@ -5,9 +5,9 @@ namespace HoliDayDate.Entity
         public bool isHoliday { get; private set; }
         public string nameHoliday { get; private set; }
 
-        public Holiday(string nameHoliday)
+        public Holiday(string nameHoliday, bool isHoliday)
         {
-            this.isHoliday = true;
+            this.isHoliday = isHoliday;
             this.nameHoliday = nameHoliday;
         }
     }

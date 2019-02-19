@@ -19,6 +19,17 @@ namespace Tests
             Assert.IsTrue(fakeResult.IsHoliday);
         }
 
+        [TestCase(2019, 4, 21, LocaleHoliday.ptBr)]
+        [TestCase(2019, 1, 21, LocaleHoliday.enUS)]
+        [TestCase(2019, 1, 1, LocaleHoliday.ptBr)]
+        [TestCase(2019, 12, 25, LocaleHoliday.enUS)]
+        public void Test_Date_Holiday_Comparer_Date(int year, int month, int day, LocaleHoliday locale)
+        {
+            var falseHoliday = new DateTime(year, month, day);
+            var fakeResult = falseHoliday.TodayIsAHoliday(locale);
+            Assert.AreEqual(fakeResult.Date, falseHoliday);
+        }
+
         [TestCase(2019, 4, 21, LocaleHoliday.enUS)]
         [TestCase(2019, 1, 21, LocaleHoliday.ptBr)]
         [TestCase(2019, 2, 2, LocaleHoliday.ptBr)]
