@@ -8,44 +8,44 @@ namespace HoliDayDate.Locale.Dictionary
     /// </summary>
     public static class DictionaryHolidayPtBR
     {
-        public static readonly Dictionary<int, Dictionary<int, Holiday>> Holidays = new Dictionary<int, Dictionary<int, Holiday>>()
+        public static readonly Dictionary<int, Dictionary<int, HolidayDate>> Holidays = new Dictionary<int, Dictionary<int, HolidayDate>>()
         {
             {
-                4, new Dictionary<int, Holiday>()
+                4, new Dictionary<int, HolidayDate>()
                 {
-                    {21, new Holiday("Tiradentes", true)}
+                    {21, new HolidayDate("Tiradentes", true)}
                 }
             },
             {
-                5, new Dictionary<int, Holiday>()
+                5, new Dictionary<int, HolidayDate>()
                 {
-                    {1, new Holiday("Dia do Trabalhador", true)}
+                    {1, new HolidayDate("Dia do Trabalhador", true)}
                 }
             },
             {
-                6, new Dictionary<int, Holiday>()
+                6, new Dictionary<int, HolidayDate>()
                 {
-                    {24, new Holiday("São João", true)}
+                    {24, new HolidayDate("São João", true)}
                 }
             },
             {
-                9, new Dictionary<int, Holiday>()
+                9, new Dictionary<int, HolidayDate>()
                 {
-                    {7, new Holiday("Independência do Brasil", true)}
+                    {7, new HolidayDate("Independência do Brasil", true)}
                 }
             },
             {
-                10, new Dictionary<int, Holiday>()
+                10, new Dictionary<int, HolidayDate>()
                 {
-                    {10, new Holiday("Dia das Crianças", true)}
+                    {10, new HolidayDate("Dia das Crianças", true)}
                 }
             },
             {
-                11, new Dictionary<int, Holiday>()
+                11, new Dictionary<int, HolidayDate>()
                 {
-                    {2, new Holiday("Dia de Finados", true)},
-                    {15, new Holiday("Proclamação da República", true)},
-                    {20, new Holiday("Dia da Consciência Negra", true)}
+                    {2, new HolidayDate("Dia de Finados", true)},
+                    {15, new HolidayDate("Proclamação da República", true)},
+                    {20, new HolidayDate("Dia da Consciência Negra", true)}
                 }
             },
         };

@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
+using Holiday.Businness.Extension.LocaleHoliday;
 using HoliDayDate.Entity;
 using HoliDayDate.Enums;
 using HoliDayDate.Locale;
 using HoliDayDate.Locale.CommomMethod;
 using HoliDayDate.Locale.Dictionary;
 
-namespace HoliDayDate.CalcHoliday
-{
+namespace HoliDayDate.CalcHoliday {
     /// <summary>
     /// Extension class to verify holiday
     /// </summary>
-    public static class CalcHoliday
-    {
+    public static class CalcHoliday {
         private static DateTimeHoliday dateReturn;
         /// <summary>
         /// Verify holidays around world
@@ -20,19 +19,19 @@ namespace HoliDayDate.CalcHoliday
         /// <param name="today">Day to verify</param>
         /// <param name="localeHoliday">Locale of holiday</param>
         /// <returns></returns>
-        public static DateTimeHoliday TodayIsAHoliday(this DateTime today, LocaleHoliday localeHoliday)
-        {
-            dateReturn = new DateTimeHoliday(today, false, "");
-            today.WorldHoliday(localeHoliday);
-            if (!dateReturn.IsHoliday)
-            {
-                switch (localeHoliday)
-                {
+        public static DateTimeHoliday TodayIsAHoliday (this DateTime today, LocaleHoliday localeHoliday) {
+            dateReturn = new DateTimeHoliday (today, false, "");
+            today.WorldHoliday (localeHoliday);
+            if (!dateReturn.IsHoliday) {
+                switch (localeHoliday) {
                     case LocaleHoliday.ptBr:
                         dateReturn = today.VerifyHolidaysPtBr();
                         break;
                     case LocaleHoliday.enUS:
-                        dateReturn = today.VerifyHolidaysEnUs();
+                        dateReturn = today.VerifyHolidaysEnUs ();
+                        break;
+                    case LocaleHoliday.ptPt:
+                        dateReturn = today.VerifyHolidaysPtPt();
                         break;
                 }
             }
@@ -46,15 +45,13 @@ namespace HoliDayDate.CalcHoliday
         /// <param name="date"></param>
         /// <param name="localeHoliday"></param>
         /// <returns></returns>
-        private static DateTimeHoliday WorldHoliday(this DateTime date, LocaleHoliday localeHoliday)
-        {
-            Dictionary<LocaleHoliday, string> holiday = new Dictionary<LocaleHoliday, string>();
-            bool result = DictionaryHolidayWorld.Holidays.TryGetValue(date.Month, out Dictionary<int, Dictionary<LocaleHoliday, string>> holidays) ?
-            holidays.TryGetValue(date.Day, out holiday) : false;
+        private static DateTimeHoliday WorldHoliday (this DateTime date, LocaleHoliday localeHoliday) {
+            Dictionary<LocaleHoliday, string> holiday = new Dictionary<LocaleHoliday, string> ();
+            bool result = DictionaryHolidayWorld.Holidays.TryGetValue (date.Month, out Dictionary<int, Dictionary<LocaleHoliday, string>> holidays) ?
+                holidays.TryGetValue (date.Day, out holiday) : false;
 
-            if (result && holiday.TryGetValue(localeHoliday, out string holidayName))
-            {
-                dateReturn = date.ReturnNewDateType(true, holidayName);
+            if (result && holiday.TryGetValue (localeHoliday, out string holidayName)) {
+                dateReturn = date.ReturnNewDateType (true, holidayName);
             }
 
             return dateReturn;

@@ -3,10 +3,13 @@
 ## Lib to verify holidays around the world.
 
 Supported Locale:
+  - World Holidays (Always verfied)
+    - Holidays:
+      * Christmas;
+      * New Year's Day;
+      * Valentine's Day (Except when locale is pt-Br).
   - pt-Br:
     - Holidays:
-      * Natal;
-      * Ano Novo;
       * Carnaval;
       * Sexta-Feira Santa;
       * Páscoa;
@@ -23,16 +26,28 @@ Supported Locale:
       * Dia da Consciência Negra.      
   - en-Us:
     - Holidays:
-      * Christmas;
-      * New Year's Day;
       * Birthday of Martin Luther King Jr.;
-      * Valentine's Day;
       * Washington's Birthday;
       * Memorial Day;
       * Independence Day;
       * Columbus Day;
       * Veterans Day;
       * Thanksgiving Day.
+  - pt-Pt:
+    - Holidays:
+      *	Carnaval
+      *	Sexta-Feira Santa 
+      *	Páscoa 
+      *	Dia da Liberdade
+      *	Dia do Trabalhador 
+      *	Dia das Mães 
+      *	Dia de Portugal
+      *	Corpo de Deus 
+      *	Assunção de Maria
+      *	Implantação da República
+      *	Todos os Santos
+      *	Restauração da Independência
+      *	Imaculada Conceição
         
         
 Access to repository [here](https://github.com/guilhermecaixeta/VerifyWorldHolidays)

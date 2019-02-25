@@ -12,8 +12,8 @@ namespace HoliDayDate.Locale
         public static DateTimeHoliday VerifyHolidaysEnUs(this DateTime date)
         {
             dateReturn = new DateTimeHoliday(date, false, "");
-            Holiday holiday = new Holiday(null, false);
-            bool result = DictionaryHolidayEnUs.Holidays.TryGetValue(date.Month, out Dictionary<int, Holiday> holidays) ?
+            HolidayDate holiday = new HolidayDate(null, false);
+            bool result = DictionaryHolidayEnUs.Holidays.TryGetValue(date.Month, out Dictionary<int, HolidayDate> holidays) ?
             holidays.TryGetValue(date.Day, out holiday) : false;
             if (date.Month == 9 && !holiday.isHoliday)
             {
