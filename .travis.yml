@@ -8,7 +8,6 @@ script:
     - dotnet build
     - dotnet test test/Test.csproj --filter TestCategory!=OPTIONAL-TEST
 after_script:
-    - dotnet test test/Test.csproj --filter TestCategory=OPTIONAL-TEST
     - pip install --user awscli
     - export PATH=$PATH:$HOME/.local/bin
     - aws ecr get-login --region us-west-2 --no-include-email
