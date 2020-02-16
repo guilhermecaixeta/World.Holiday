@@ -15,8 +15,8 @@ Currently this package support the cultures:
 
 ### 1.0.1
   For this version some improvements was make. They are:
-  * Upgrade to asp.net core 3.1
-  * Package are re-write, to improving performacing, currently this new version are almost 3x times than faster than backward.
+  * Upgrade to asp.net standard 2.1
+  * Package was re-writed with the focus to improving performacing, currently this new version are almost 3x times than faster than backward.
   * Add support to new countries: Spain and Canada
   * Add code quality
   * Add cake support to automate the pipeline
