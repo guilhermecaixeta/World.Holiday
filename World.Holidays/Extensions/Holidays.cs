@@ -25,7 +25,7 @@ namespace World.Holidays.Extensions
             var worldHolidayList = worldHolidays.
                 FirstOrDefault(x => x.Item1 == date.Month).
                 Item2.
-                Where(x => (culture & x.Culture) == culture);
+                Where(x => (culture & x.Culture) == culture).ToList();
 
             var holiday = new List<Holiday>();
 

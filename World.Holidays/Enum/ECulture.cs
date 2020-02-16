@@ -33,12 +33,21 @@ namespace World.Holidays.Enum
             /// The en us
             /// </summary>
             enUS = 0x01,//some values need be lower than value above, else they could impact the correct work of the package.
+            /// <summary>
+            /// The es es
+            /// </summary>
+            esES = 0x06,
         }
 
         /// <summary>
         /// All Cultures
         /// </summary>
-        internal const ECulture AllCultures = ECulture.enCA | ECulture.enUS | ECulture.ptBR | ECulture.ptPT;
+        internal const ECulture AllCultures = ECulture.enCA | ECulture.enUS | ECulture.ptBR | ECulture.ptPT | ECulture.esES;
+
+        /// <summary>
+        /// The easter monday
+        /// </summary>
+        internal const ECulture EasterMonday = ECulture.enCA | ECulture.ptPT | ECulture.esES;
 
         /// <summary>
         /// The easter day culture

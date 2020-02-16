@@ -15,15 +15,15 @@ namespace World.Holidays.Extensions
         /// The holidays
         /// </summary>
         private static Holiday[] Holidays(ECulture culture) => new Holiday[]{
+            new Holiday(-3, null, false, EHolidayName.HolyThursday.GetDescription(culture), ECulture.esES),
             new Holiday(-2, null, true, EHolidayName.GoodFriday.GetDescription(culture), AllCultures),
             new Holiday(-46, null, true, EHolidayName.AshWednesday.GetDescription(culture), ECulture.ptBR),
-            new Holiday(-47, null, true, EHolidayName.MardiGrass.GetDescription(culture), ECulture.ptBR),
-            new Holiday(-47, null, false, EHolidayName.MardiGrass.GetDescription(culture), ECulture.ptPT),
+            new Holiday(-47, null, culture == ECulture.ptPT? false: true, EHolidayName.MardiGrass.GetDescription(culture), PtCulture),
             new Holiday(-48, null, true, EHolidayName.MardiGrass.GetDescription(culture), ECulture.ptBR),
             new Holiday(60, null, false, EHolidayName.CorpusChristi.GetDescription(culture), PtCulture),
             new Holiday(40, null, false, EHolidayName.AscensionThursday.GetDescription(culture), ECulture.ptPT),
-            new Holiday(0, null, true, EHolidayName.EasterDay.GetDescription(culture), PtCulture),
-            new Holiday(1, null, true, EHolidayName.EasterMonday.GetDescription(culture), ECulture.enCA | ECulture.ptPT)
+            new Holiday(0, null, true, EHolidayName.EasterDay.GetDescription(culture), PtCulture | ECulture.esES),
+            new Holiday(1, null, false, EHolidayName.EasterMonday.GetDescription(culture), EasterMonday)
             };
 
         /// <summary>

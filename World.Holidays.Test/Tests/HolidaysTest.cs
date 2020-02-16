@@ -11,6 +11,8 @@ namespace World.Holidays.Test.Tests
     {
         private const int Year = 2020;
 
+        [TestCase(Year, 7, 25, ECulture.esES, false)]
+        [TestCase(Year, 8, 15, ECulture.esES, true)]
         [TestCase(Year, 5, 22, ECulture.ptPT, false)]
         [TestCase(Year, 12, 8, ECulture.ptPT, true)]
         [TestCase(Year, 4, 21, ECulture.ptBR, true)]
@@ -65,6 +67,8 @@ namespace World.Holidays.Test.Tests
         [TestCase(Year, 8, 9, ECulture.ptBR)]
         [TestCase(Year, 5, 10, ECulture.enCA)]
         [TestCase(Year, 6, 21, ECulture.enCA)]
+        [TestCase(Year, 4, 12, ECulture.esES)]
+        [TestCase(Year, 4, 9, ECulture.esES)]
         public void HolidayDate_ValidateMobileHolidays(int year, int month, int day, ECulture culture)
         {
             var fakeDate = new DateTime(year, month, day);
@@ -87,6 +91,8 @@ namespace World.Holidays.Test.Tests
         [TestCase(Year, 8, 3, ECulture.enCA, "August Civic Holiday")]
         [TestCase(Year, 12, 8, ECulture.ptBR, "Nossa Senhora da Conceição")]
         [TestCase(Year, 12, 8, ECulture.ptPT, "Imaculada Conceição")]
+        [TestCase(Year, 8, 15, ECulture.ptPT, "Assunção de Maria")]
+        [TestCase(Year, 8, 15, ECulture.esES, "Asunción de la Virgen")]
         public void HolidayDate_ValidateNameHolidays(int year, int month, int day, ECulture culture, string nameHoliday)
         {
             var fakeDate = new DateTime(year, month, day);
