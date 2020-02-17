@@ -5,6 +5,23 @@
     <Authors>GuiCaixeta</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.1</Version>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <Description>This package can check if the day informed is a holiday.
+Currently is supported the culture:
+pt-BR
+pt-PT
+en-US
+en-CA
+es-ES</Description>
+    <PackageProjectUrl>https://github.com/guilhermecaixeta/World.Holiday</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/guilhermecaixeta/World.Holiday/</RepositoryUrl>
+    <RepositoryType>https://github.com/guilhermecaixeta/World.Holiday/</RepositoryType>
+    <PackageTags>Holidays, .NetCore, PtBR, EnUS, EnCA, EsES,PtPT</PackageTags>
+    <PackageReleaseNotes>V.1.0.1
+Package was upgraded to net standard 2.1
+Was re-writed to improve perfomance
+two new countries added
+</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
