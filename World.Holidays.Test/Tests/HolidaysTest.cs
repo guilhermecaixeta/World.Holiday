@@ -110,5 +110,58 @@ namespace World.Holidays.Test.Tests
                 Assert.IsTrue(false);
             }
         }
+
+        [TestCase(Year, 02, 03, ECulture.ptBR)]
+        [TestCase(Year, 04, 04, ECulture.ptPT)]
+        [TestCase(Year, 04, 05, ECulture.esES)]
+        public void HolidayDate_HolidaysInMonth_MinMaxDates(int year, int month, int holidaysInMonth, ECulture culture)
+        {
+            var fakeStartDate = new DateTime(year, month, 01);
+
+            var fakeEndDate = fakeStartDate.AddMonths(1).AddDays(-1);
+
+            var fakeHolidays = DateHolidays.GetInInterval(fakeStartDate, fakeEndDate, culture);
+
+            var count = fakeHolidays.Count();
+
+            Assert.AreEqual(holidaysInMonth, count);
+        }
+
+        [TestCase(Year, 02, 03, ECulture.ptBR)]
+        [TestCase(Year, 04, 04, ECulture.ptPT)]
+        [TestCase(Year, 04, 05, ECulture.esES)]
+        public void HolidayDate_HolidaysInMonth_DateInDays(int year, int month, int holidaysInMonth, ECulture culture)
+        {
+            var fakeStartDate = new DateTime(year, month, 01);
+
+            var fakeEndDate = fakeStartDate.AddMonths(1).AddDays(-1);
+
+            var fakeDays = (fakeEndDate - fakeStartDate).Days;
+
+            var fakeHolidays = DateHolidays.GetInInterval(fakeStartDate, fakeDays, culture);
+
+            var count = fakeHolidays.Count();
+
+            Assert.AreEqual(holidaysInMonth, count);
+        }
+
+        [TestCase(03, ECulture.ptBR)]
+        [TestCase(01, ECulture.ptPT)]
+        [TestCase(01, ECulture.esES)]
+        public void HolidayDate_HolidaysInMonth_FromCurrentlyDate(int holidaysInMonth, ECulture culture)
+        {
+            var now = DateTime.Now;
+            var fakeStartDate = new DateTime(now.Year, now.Month, 01);
+
+            var fakeEndDate = fakeStartDate.AddMonths(1).AddDays(-1);
+
+            var fakeDays = (fakeEndDate - now).Days;
+
+            var fakeHolidays = DateHolidays.GetFromCurrentlyDate(fakeDays, culture);
+
+            var count = fakeHolidays.Count();
+
+            Assert.AreEqual(holidaysInMonth, count);
+        }
     }
 }
