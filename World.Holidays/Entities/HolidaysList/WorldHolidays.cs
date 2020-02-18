@@ -7,9 +7,9 @@ namespace World.Holidays.Entities.HolidaysList
 {
     internal class WorldHolidays
     {
-        private static ECulture Culture;
+        private ECulture Culture;
 
-        private static int Year;
+        private int Year;
 
         public WorldHolidays(ECulture culture, int year)
         {
