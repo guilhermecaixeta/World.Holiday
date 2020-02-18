@@ -21,12 +21,15 @@ namespace World.Holidays.Entities.HolidaysList
             new List<Holiday>()
             {
 #region January
+
                 new Holiday(Year, 01, 01, true, EHolidayName.NewYear.GetDescription(Culture), AllCultures),
                 //ES-ES
                 new Holiday(Year, 01, 06, true, "Epifanía / Reyes Magos", ECulture.esES),
-#endregion
+
+#endregion January
 
 #region February
+
                 //EN-CA
                 new Holiday(Year, 02,17, false, "Family Day",ECulture.enCA),
                 //PT-BR
@@ -35,9 +38,11 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 02,17, true, "Washington's Birthday",ECulture.enUS),
                 //ES-ES
                 new Holiday(Year, 02,28, false, "Día de Andalucía",ECulture.esES),
-#endregion
+
+#endregion February
 
 #region March
+
                 //EN-CA
                 new Holiday(Year, 03,17, false, "St. Patrick's Day",ECulture.enCA),
                 //PT-BR
@@ -48,33 +53,39 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 03, 25, false, "Data magna do estado do Ceará", ECulture.ptBR),
                 //ES-ES
                 new Holiday(Year, 03, 01,true, "Día de las Illes Balears", ECulture.esES),
-#endregion
+
+#endregion March
 
 #region April
+
                 //PT-BR
                 new Holiday(Year, 04, 21, true, "Tiradentes", ECulture.ptBR),
                 //ES-PT
                 new Holiday(Year, 04, 23, false, EHolidayName.SaintGeorge.GetDescription(Culture), ECulture.ptBR | ECulture.esES),
                 //PT-PT
                 new Holiday(Year, 04, 25, false, "Dia da Liberdade", ECulture.ptPT),
-#endregion
+
+#endregion April
 
 #region May
+
                 //EN-CA
                 new Holiday(Year, 05, 18, false, "Victoria Day",ECulture.enCA),
                 //PT-ES
                 new Holiday(Year, 05, 01,
                     true,
                     EHolidayName.LabourDay.GetDescription(Culture),
-                    PtCulture | ECulture.esES),
+                    CultureptPTES),
                 //EN-US
                 new Holiday(Year, 05, 25, true, "Memorial Day",ECulture.enUS),
                 //ES-ES
                 new Holiday(Year, 05, 15, false, "San Isidro",ECulture.esES),
                 new Holiday(Year, 05, 30, false, "Día de Canarias",ECulture.esES),
-#endregion
+
+#endregion May
 
 #region June
+
                 //EN-CA
                 new Holiday(Year, 06, 21, false, "National Aboriginal Day", ECulture.enCA),
                 new Holiday(Year, 06, 24, false, "National Holiday of Quebec", ECulture.enCA),
@@ -92,9 +103,11 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 06, 13, false, "Dia de Santo António", ECulture.ptPT),
                 //ES-ES
                 new Holiday(Year, 06, 09, false, "Día de la Región de Murcia", ECulture.esES),
-#endregion
+
+#endregion June
 
 #region July
+
                 //EN-CA
                 new Holiday(Year, 07, 01, true, "Canada Day",ECulture.enCA),
                 new Holiday(Year, 07, 09, false, "Nunavut Day",ECulture.enCA),
@@ -106,19 +119,24 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 07, 04, true, EHolidayName.IndependencyDay.GetDescription(Culture), ECulture.enUS),
                 //ES-ES
                 new Holiday(Year, 07, 25, false, "Santiago Apóstol", ECulture.esES),
-#endregion
+
+#endregion July
 
 #region August
+
                 //EN-CA
                 new Holiday(Year, 08, 03, false, "August Civic Holiday",ECulture.enCA),
                 //PT-ES
                 new Holiday(Year, 08, 15,
                             IsPtEs(),
                             EHolidayName.AssumptionOfMaria.GetDescription(Culture),
-                            PtCulture | ECulture.esES),
-#endregion 
+                            CultureptPTES),
+#endregion August
+
+
 
 #region September
+
                 //EN
                 new Holiday(Year, 09, 07, true, EHolidayName.LabourDay.GetDescription(Culture), EnCulture),
                 //PT-BR
@@ -126,9 +144,11 @@ namespace World.Holidays.Entities.HolidaysList
                 //ES-ES
                 new Holiday(Year, 09, 08, false, "Día de Asturias", ECulture.esES),
                 new Holiday(Year, 09, 11, false, "Fiesta Nacional de Cataluña", ECulture.esES),
-#endregion
+
+#endregion September
 
 #region October
+
                 //EN-CA
                 new Holiday(Year, 10, 12, false, EHolidayName.Thanksgiving.GetDescription(Culture), ECulture.enCA),
                 //PT-BR
@@ -140,9 +160,11 @@ namespace World.Holidays.Entities.HolidaysList
                 //ES-ES
                 new Holiday(Year, 10, 09, true, "Día de la Comunidad Valenciana", ECulture.esES),
                 new Holiday(Year, 10, 09, true, "Fiesta Nacional de España", ECulture.esES),
-#endregion
+
+#endregion October
 
 #region November #Rain
+
                 //EN-CA
                 new Holiday(Year, 11, 11, false, "Remembrance Day",ECulture.enCA),
                 //PT-BR
@@ -156,9 +178,11 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 11, 01, true, EHolidayName.AllSaintsDay.GetDescription(Culture), ECulture.ptPT),
                 //ES-ES
                 new Holiday(Year, 11, 09, true, "Virgen de la Almudena", ECulture.esES),
-#endregion
+
+#endregion November #Rain
 
 #region December
+
                 //PT-PT
                 new Holiday(Year, 12, 01, true, "Restauração da Independência", ECulture.ptPT),
                 //PT
@@ -172,7 +196,8 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 12, 26, false, "Boxing Day", ECulture.enCA),
                 // ES-ES
                 new Holiday(Year, 12, 06, false, "Día de la Constitución", ECulture.esES)
-#endregion
+
+#endregion December
             };
 
         /// <summary>
@@ -181,7 +206,7 @@ namespace World.Holidays.Entities.HolidaysList
         /// <returns>
         ///   <c>true</c> if [is pt es]; otherwise, <c>false</c>.
         /// </returns>
-        private static bool IsPtEs() =>
-            (Culture & (ECulture.ptPT | ECulture.esES)) == Culture;
+        private bool IsPtEs() =>
+            (Culture & CultureptPTES) == Culture;
     }
 }

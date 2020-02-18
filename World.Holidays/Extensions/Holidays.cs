@@ -22,7 +22,7 @@ namespace World.Holidays.Extensions
             var worldHolidays = new WorldHolidays(culture, date.Year).Holidays().ToList();
 
             var holidays = worldHolidays.
-                Where(x => (culture & x.Culture) == culture && x.Date.Date.CompareTo(date.Date) == 0);
+                Where(x => (culture & x.Culture) == culture && x.Date.Ticks == date.Date.Ticks);
 
             var mobileHoliday = FindMobileHolidays.GetMobileHoliday(date, culture);
 

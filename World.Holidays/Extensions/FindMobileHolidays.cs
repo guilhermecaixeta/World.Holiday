@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using World.Holidays.Entities;
 using World.Holidays.Enum;
 using static World.Holidays.Enum.Culture;
@@ -67,8 +66,12 @@ namespace World.Holidays.Extensions
             {
                 return null;
             }
+            if ((culture & ECulture.ptBR) == culture && date.Month != 8)
+            {
+                return null;
+            }
 
-            if ((ECulture.ptBR == culture && date.Month != 8) || (((culture & EnCulture) == culture) && date.Month != 7))
+            if ((culture & EnCulture) == culture && date.Month != 7)
             {
                 return null;
             }
@@ -119,7 +122,7 @@ namespace World.Holidays.Extensions
 
             var parentDate = firstDay.AddDays(daysLeft);
 
-            if (date.Date.CompareTo(parentDate.Date) == 0)
+            if (date.Date.Ticks == parentDate.Date.Ticks)
             {
                 return parentDate;
             }
@@ -145,6 +148,7 @@ namespace World.Holidays.Extensions
                         sundaysInMonth = 3;
                     }
                     break;
+
                 case ECulture.esES:
                 case ECulture.ptPT:
                     if (holidayName == EHolidayName.MotherDay)
@@ -200,7 +204,7 @@ namespace World.Holidays.Extensions
 
             foreach (var holiday in Holidays(date, culture))
             {
-                if (((culture & holiday.Culture) == culture) && holiday.Date.Date.CompareTo(date.Date) == 0)
+                if (((culture & holiday.Culture) == culture) && holiday.Date.Ticks == date.Date.Ticks)
                 {
                     holidays.Add(holiday);
                 }

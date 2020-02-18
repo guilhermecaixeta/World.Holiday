@@ -17,22 +17,27 @@ namespace World.Holidays.Enum
             /// The none
             /// </summary>
             None = 0x0,
+
             /// <summary>
             /// The pt br
             /// </summary>
             ptBR = 0x10,
+
             /// <summary>
             /// The pt pt
             /// </summary>
             ptPT = 0x20,
+
             /// <summary>
             /// The en ca
             /// </summary>
             enCA = 0x40,
+
             /// <summary>
             /// The en us
             /// </summary>
             enUS = 0x01,//some values need be lower than value above, else they could impact the correct work of the package.
+
             /// <summary>
             /// The es es
             /// </summary>
@@ -68,5 +73,7 @@ namespace World.Holidays.Enum
         /// The pt culture
         /// </summary>
         internal const ECulture PtCulture = ECulture.ptBR | ECulture.ptPT;
+
+        internal const ECulture CultureptPTES = ECulture.ptPT | ECulture.esES;
     }
 }
