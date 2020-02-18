@@ -75,14 +75,17 @@ Holidays in each culture:
 
 ```
 ...some logic
-var dataHoliday = new DateTime(2019, 12, 25).TodayIsAHoliday(LocaleHoliday.ptBr);
+var dataHoliday = new DateTime().IsHoliday(ECulture.ptBR);
 
 /*
 Returning JSON like this
 {
-  "date": "2019-03-05T00:00:00",
-  "isHoliday": true,
-  "nameHoliday": "Carnaval"
+  "Date": "2019-03-05T00:00:00",
+  "IsHoliday": true,
+  "NameHoliday": 
+  [
+    "Some holiday..."
+  ]
 }
 */
 ```

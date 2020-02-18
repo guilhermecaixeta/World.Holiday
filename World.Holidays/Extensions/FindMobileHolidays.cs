@@ -14,17 +14,23 @@ namespace World.Holidays.Extensions
         /// <summary>
         /// The holidays
         /// </summary>
-        private static Holiday[] Holidays(ECulture culture) => new Holiday[]{
-            new Holiday(-3, null, false, EHolidayName.HolyThursday.GetDescription(culture), ECulture.esES),
-            new Holiday(-2, null, true, EHolidayName.GoodFriday.GetDescription(culture), AllCultures),
-            new Holiday(-46, null, true, EHolidayName.AshWednesday.GetDescription(culture), ECulture.ptBR),
-            new Holiday(-47, null, culture == ECulture.ptPT? false: true, EHolidayName.MardiGrass.GetDescription(culture), PtCulture),
-            new Holiday(-48, null, true, EHolidayName.MardiGrass.GetDescription(culture), ECulture.ptBR),
-            new Holiday(60, null, false, EHolidayName.CorpusChristi.GetDescription(culture), PtCulture),
-            new Holiday(40, null, false, EHolidayName.AscensionThursday.GetDescription(culture), ECulture.ptPT),
-            new Holiday(0, null, true, EHolidayName.EasterDay.GetDescription(culture), PtCulture | ECulture.esES),
-            new Holiday(1, null, false, EHolidayName.EasterMonday.GetDescription(culture), EasterMonday)
+        private static Holiday[] Holidays(DateTime dateTime, ECulture culture)
+        {
+            CalculateEasterDay(dateTime);
+
+            return new[]
+            {
+                new Holiday(EasterDay.AddDays(-3), false, EHolidayName.HolyThursday.GetDescription(culture), ECulture.esES),
+                new Holiday(EasterDay.AddDays(-2), true, EHolidayName.GoodFriday.GetDescription(culture), AllCultures),
+                new Holiday(EasterDay.AddDays(-46), true, EHolidayName.AshWednesday.GetDescription(culture), ECulture.ptBR),
+                new Holiday(EasterDay.AddDays(-47), culture != ECulture.ptPT, EHolidayName.MardiGrass.GetDescription(culture), PtCulture),
+                new Holiday(EasterDay.AddDays(-48), true, EHolidayName.MardiGrass.GetDescription(culture), ECulture.ptBR),
+                new Holiday(EasterDay.AddDays(60), false, EHolidayName.CorpusChristi.GetDescription(culture), PtCulture),
+                new Holiday(EasterDay.AddDays(40), false, EHolidayName.AscensionThursday.GetDescription(culture), ECulture.ptPT),
+                new Holiday(EasterDay.AddDays(0), true, EHolidayName.EasterDay.GetDescription(culture), PtCulture | ECulture.esES),
+                new Holiday(EasterDay.AddDays(1), false, EHolidayName.EasterMonday.GetDescription(culture), EasterMonday)
             };
+        }
 
         /// <summary>
         /// The days on week
@@ -32,76 +38,122 @@ namespace World.Holidays.Extensions
         private static readonly int DaysOnWeek = 7;
 
         /// <summary>
-        /// Determines whether [is parent day] [the specified date].
+        /// Gets the mothers day.
         /// </summary>
         /// <param name="date">The date.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
-        private static string GetParentDay(DateTime date, ECulture culture)
+        private static Holiday GetMothersDay(DateTime date, ECulture culture)
         {
-            if (date.Month != 5 && date.Month != 8)
+            if (date.Month != 5)
             {
                 return null;
             }
 
-            if (culture == ECulture.enCA && (date.Month != 7 && date.Month != 5))
+            var holiday = GetParentDay(date, culture, EHolidayName.MotherDay, true);
+
+            return holiday;
+        }
+
+        /// <summary>
+        /// Gets the fathers day.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <param name="culture">The culture.</param>
+        /// <returns></returns>
+        private static Holiday GetFathersDay(DateTime date, ECulture culture)
+        {
+            if ((culture & (EnCulture | ECulture.ptBR)) != culture)
             {
                 return null;
             }
 
-            var parentDateName = date.Month == 5 ?
-                EHolidayName.MotherDay : EHolidayName.FatherDay;
+            if ((ECulture.ptBR == culture && date.Month != 8) || (((culture & EnCulture) == culture) && date.Month != 7))
+            {
+                return null;
+            }
 
+            var holiday = GetParentDay(date, culture, EHolidayName.FatherDay, false);
+
+            return holiday;
+        }
+
+        /// <summary>
+        /// Gets the parent day.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <param name="culture">The culture.</param>
+        /// <param name="holidayName">Name of the holiday.</param>
+        /// <param name="isNational">if set to <c>true</c> [is national].</param>
+        /// <returns></returns>
+        private static Holiday GetParentDay(DateTime date, ECulture culture, EHolidayName holidayName, bool isNational)
+        {
+            var sundays = GetTotalSunday(holidayName, culture);
+
+            var parentDay = GetDaysLeftTo(date, sundays);
+
+            if (!parentDay.HasValue)
+            {
+                return null;
+            }
+
+            return new Holiday(parentDay.Value, isNational, holidayName.GetDescription(culture), culture);
+        }
+
+        /// <summary>
+        /// Gets the days left to.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <param name="sundaysUntilHoliday">The sundays until holiday.</param>
+        /// <returns></returns>
+        private static DateTime? GetDaysLeftTo(DateTime date, int sundaysUntilHoliday)
+        {
             var firstDay = new DateTime(date.Year, date.Month, 1);
 
-            var parentDate = firstDay.AddDays(DaysOnWeek);
+            var daysLeft = 0;
 
             if (firstDay.DayOfWeek != DayOfWeek.Sunday)
             {
-                var sundaysInMonth = GetTotalSunday(parentDateName, culture);
-
-                var daysLeft = (DaysOnWeek * sundaysInMonth) - (int)firstDay.DayOfWeek;
-
-                parentDate = firstDay.AddDays(daysLeft);
+                daysLeft = (DaysOnWeek * sundaysUntilHoliday) - (int)firstDay.DayOfWeek;
             }
 
-            var isParentDate = parentDate.Date.CompareTo(date.Date) == 0;
+            var parentDate = firstDay.AddDays(daysLeft);
 
-            if (!isParentDate)
+            if (date.Date.CompareTo(parentDate.Date) == 0)
             {
-                return null;
+                return parentDate;
             }
 
-            return parentDateName.GetDescription(culture);
+            return null;
         }
 
         /// <summary>
         /// Gets the total sunday.
         /// </summary>
-        /// <param name="parentDateName">Name of the parent date.</param>
+        /// <param name="holidayName">Name of the parent date.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
-        private static int GetTotalSunday(EHolidayName parentDateName, ECulture culture)
+        private static int GetTotalSunday(EHolidayName holidayName, ECulture culture)
         {
             var sundaysInMonth = 2;
+
             switch (culture)
             {
-                case ECulture.enCA:
-                    if (parentDateName == EHolidayName.FatherDay)
+                case EnCulture:
+                    if (holidayName == EHolidayName.FatherDay)
                     {
                         sundaysInMonth = 3;
                     }
                     break;
-
+                case ECulture.esES:
                 case ECulture.ptPT:
-                    if (parentDateName == EHolidayName.MotherDay)
+                    if (holidayName == EHolidayName.MotherDay)
                     {
                         sundaysInMonth = 1;
                     }
                     break;
 
                 default:
-                    sundaysInMonth = 2;
                     break;
             }
             return sundaysInMonth;
@@ -135,55 +187,26 @@ namespace World.Holidays.Extensions
         /// <param name="date">The date.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
-        public static Holiday GetMobileHoliday(DateTime date, ECulture culture)
+        public static IEnumerable<Holiday> GetMobileHoliday(DateTime date, ECulture culture)
         {
-            var holidayNameList = new List<string>();
+            var holidays = new List<Holiday>();
 
-            var isNational = false;
+            var parentDate = GetMothersDay(date, culture) ?? GetFathersDay(date, culture);
 
-            var parentDate = GetParentDay(date, culture);
-
-            if (!string.IsNullOrEmpty(parentDate))
+            if (parentDate != null)
             {
-                holidayNameList.Add(parentDate);
-                isNational = true;
+                holidays.Add(parentDate);
             }
 
-            CalculateEasterDay(date);
-
-            foreach (var holiday in Holidays(culture))
+            foreach (var holiday in Holidays(date, culture))
             {
-                if (((culture & holiday.Culture) == culture) && EqualsDate(date, holiday.DaysLeft.Value))
+                if (((culture & holiday.Culture) == culture) && holiday.Date.Date.CompareTo(date.Date) == 0)
                 {
-                    holidayNameList.AddRange(holiday.HolidayName);
+                    holidays.Add(holiday);
                 }
             }
 
-            var isHoliday = holidayNameList.Any();
-
-            if (isHoliday)
-            {
-                return new Holiday(null, date.Day, isNational, holidayNameList, culture);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Equals the specified date.
-        /// </summary>
-        /// <param name="date">The date.</param>
-        /// <param name="days">The days.</param>
-        /// <returns></returns>
-        private static bool EqualsDate(DateTime date, int days)
-        {
-            var holiday = EasterDay.AddDays(days);
-
-            var result = holiday.Date.CompareTo(date.Date);
-
-            return result == 0;
+            return holidays;
         }
     }
 }

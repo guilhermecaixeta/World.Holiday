@@ -6,7 +6,7 @@ namespace World.Holidays.Enum
     /// <summary>
     /// Generic holiday
     /// </summary>
-    internal enum EHolidayName
+    public enum EHolidayName
     {
         None,
 
@@ -35,12 +35,13 @@ namespace World.Holidays.Enum
         [DescriptionHoliday("Fiesta del Corpus Christi", ECulture.esES)]
         CorpusChristi,
 
-        [DescriptionHoliday("Father's Day", ECulture.enCA)]
+        [DescriptionHoliday("Father's Day", EnCulture)]
         [DescriptionHoliday("Dia dos pais", ECulture.ptBR)]
         FatherDay,
 
-        [DescriptionHoliday("Mother's Day", ECulture.enCA)]
+        [DescriptionHoliday("Mother's Day", EnCulture)]
         [DescriptionHoliday("Dia das Mães", PtCulture)]
+        [DescriptionHoliday("Día de la Madre", ECulture.esES)]
         MotherDay,
 
         [DescriptionHoliday("Labour Day", ECulture.enCA)]

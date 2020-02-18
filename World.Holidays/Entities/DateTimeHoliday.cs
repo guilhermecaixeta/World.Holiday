@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace World.Holidays.Entities
 {
@@ -12,31 +13,15 @@ namespace World.Holidays.Entities
         /// Initializes a new instance of the <see cref="DateTimeHoliday"/> class.
         /// </summary>
         /// <param name="date">The date.</param>
-        public DateTimeHoliday(DateTime date)
+        /// <param name="holidaysInMonth">The holidays in month.</param>
+        public DateTimeHoliday(DateTime date, IEnumerable<Holiday> holidaysInMonth)
         {
             Date = date;
-            IsHoliday = false;
-            IsNational = false;
-            HolidayName = null;
+            HolidaysInMonth = holidaysInMonth;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DateTimeHoliday"/> class.
-        /// </summary>
-        /// <param name="date">The date.</param>
-        /// <param name="isHoliday">if set to <c>true</c> [is holiday].</param>
-        /// <param name="isNational">if set to <c>true</c> [is national].</param>
-        /// <param name="holidayName">Name of the holiday.</param>
-        public DateTimeHoliday(DateTime date, bool isHoliday, bool isNational, IEnumerable<string> holidayName)
-        {
-            Date = date;
-            IsHoliday = isHoliday;
-            IsNational = isNational;
-            HolidayName = holidayName;
-        }
-
-        /// <summary>
-        /// Gets the date.
+        /// Gets the current date informed.
         /// </summary>
         /// <value>
         /// The date.
@@ -44,39 +29,27 @@ namespace World.Holidays.Entities
         public DateTime Date { get; private set; }
 
         /// <summary>
-        /// Gets a value indicating whether this instance is holiday.
+        /// Gets a value indicating whether this instance has holiday.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is holiday; otherwise, <c>false</c>.
+        ///   <c>true</c> if this instance has holiday; otherwise, <c>false</c>.
         /// </value>
-        public bool IsHoliday { get; private set; }
+        public bool HasHoliday { get => HolidaysInMonth.Any(); }
 
         /// <summary>
-        /// Gets a value indicating whether this instance is national.
+        /// Gets or sets the holidays in month.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is national; otherwise, <c>false</c>.
+        /// The holidays in month.
         /// </value>
-        public bool IsNational { get; private set; }
+        private IEnumerable<Holiday> HolidaysInMonth { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether this instance is weekend.
+        /// Gets the holidays.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is weekend; otherwise, <c>false</c>.
+        /// The holidays.
         /// </value>
-        public bool IsWeekend
-        {
-            get => Date.DayOfWeek == DayOfWeek.Sunday ||
-                Date.DayOfWeek == DayOfWeek.Saturday;
-        }
-
-        /// <summary>
-        /// Gets the name of the holiday.
-        /// </summary>
-        /// <value>
-        /// The name of the holiday.
-        /// </value>
-        public IEnumerable<string> HolidayName { get; private set; }
+        public IReadOnlyList<Holiday> Holidays { get => HolidaysInMonth.ToList(); }
     }
 }

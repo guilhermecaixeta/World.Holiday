@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using World.Holidays.Entities;
 using World.Holidays.Entities.HolidaysList;
@@ -8,49 +7,28 @@ using static World.Holidays.Enum.Culture;
 namespace World.Holidays.Extensions
 {
     /// <summary>
-    ///
+    /// Validate is the date informed is holiday
     /// </summary>
     public static class Holidays
     {
         /// <summary>
-        /// Determines whether the specified culture is holiday.
+        /// Determines whether the specified date is holidays for the informed culture.
         /// </summary>
         /// <param name="date">The date.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
         public static DateTimeHoliday IsHoliday(this DateTime date, ECulture culture)
         {
-            var worldHolidays = new WorldHolidays(culture).Holidays();
+            var worldHolidays = new WorldHolidays(culture, date.Year).Holidays().ToList();
 
-            var worldHolidayList = worldHolidays.
-                FirstOrDefault(x => x.Item1 == date.Month).
-                Item2.
-                Where(x => (culture & x.Culture) == culture).ToList();
-
-            var holiday = new List<Holiday>();
-
-            holiday.AddRange(worldHolidayList.Where(x => x.Day == date.Day));
+            var holidays = worldHolidays.
+                Where(x => (culture & x.Culture) == culture && x.Date.Date.CompareTo(date.Date) == 0);
 
             var mobileHoliday = FindMobileHolidays.GetMobileHoliday(date, culture);
 
-            if (mobileHoliday != null)
-            {
-                holiday.Add(mobileHoliday);
-            }
+            holidays = holidays.Concat(mobileHoliday);
 
-            var isHoliday = holiday.Any();
-
-            var isNational = holiday.Any(x => x.IsNational);
-
-            var holidayNames = holiday.
-                Select(x => x.HolidayName).
-                Aggregate(new List<string>(), (list, current) =>
-                {
-                    list.AddRange(current);
-                    return list;
-                });
-
-            var dateHoliday = new DateTimeHoliday(date, isHoliday, isNational, holidayNames);
+            var dateHoliday = new DateTimeHoliday(date, holidays);
 
             return dateHoliday;
         }

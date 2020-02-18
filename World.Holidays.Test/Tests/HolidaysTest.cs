@@ -27,9 +27,9 @@ namespace World.Holidays.Test.Tests
 
             var fakeHoliday = fakeDate.IsHoliday(culture);
 
-            if (isNational == fakeHoliday.IsNational && fakeHoliday.IsHoliday)
+            if (fakeHoliday.HasHoliday)
             {
-                Assert.IsTrue(true);
+                Assert.AreEqual(isNational, fakeHoliday.Holidays.FirstOrDefault().IsNational);
             }
             else
             {
@@ -51,7 +51,7 @@ namespace World.Holidays.Test.Tests
 
             var fakeHoliday = fakeDate.IsHoliday(culture);
 
-            if (!fakeHoliday.IsHoliday)
+            if (!fakeHoliday.HasHoliday)
             {
                 Assert.IsTrue(true);
             }
@@ -75,9 +75,9 @@ namespace World.Holidays.Test.Tests
 
             var fakeHoliday = fakeDate.IsHoliday(culture);
 
-            if (fakeHoliday.IsHoliday)
+            if (fakeHoliday.HasHoliday)
             {
-                Assert.IsTrue(true);
+                Assert.AreEqual(1, fakeHoliday.Holidays.Count);
             }
             else
             {
@@ -99,9 +99,11 @@ namespace World.Holidays.Test.Tests
 
             var fakeHoliday = fakeDate.IsHoliday(culture);
 
-            if (fakeHoliday.IsHoliday)
+            if (fakeHoliday.HasHoliday)
             {
-                Assert.IsTrue(fakeHoliday.HolidayName.Any(x => x.Equals(nameHoliday)));
+                var count = fakeHoliday.Holidays.Where(x => x.Name.Equals(nameHoliday)).Count();
+
+                Assert.AreEqual(1, count);
             }
             else
             {
