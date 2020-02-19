@@ -20,6 +20,7 @@ namespace World.Holidays.Entities
         public Holiday(int year, int month, int day, bool isNational, string name, ECulture culture)
         {
             Date = new DateTime(year, month, day);
+            Ticks = Date.Date.Ticks;
             IsNational = isNational;
             Name = name;
             Culture = culture;
@@ -36,6 +37,7 @@ namespace World.Holidays.Entities
         public Holiday(DateTime date, int? daysLeft, bool isNational, string name, ECulture culture)
         {
             Date = date;
+            Ticks = Date.Date.Ticks;
             DaysLeft = daysLeft;
             IsNational = isNational;
             Name = name;
@@ -52,6 +54,7 @@ namespace World.Holidays.Entities
         public Holiday(DateTime date, bool isNational, string name, ECulture culture)
         {
             Date = date;
+            Ticks = Date.Date.Ticks;
             IsNational = isNational;
             Name = name;
             Culture = culture;
@@ -116,6 +119,8 @@ namespace World.Holidays.Entities
         /// The culture.
         /// </value>
         public ECulture Culture { get; private set; }
+
+        internal long Ticks { get; private set; }
 
         /// <summary>
         /// Calculates the days left.

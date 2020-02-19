@@ -12,15 +12,15 @@ namespace World.Holidays.Test.Tests
     {
         private const int Year = 2020;
         
-        [TestCase(Year, 7, 25, ECulture.esES, false)]
-        [TestCase(Year, 8, 15, ECulture.esES, true)]
-        [TestCase(Year, 5, 22, ECulture.ptPT, false)]
-        [TestCase(Year, 12, 8, ECulture.ptPT, true)]
-        [TestCase(Year, 4, 21, ECulture.ptBR, true)]
-        [TestCase(Year, 12, 8, ECulture.ptBR, false)]
-        [TestCase(Year, 7, 1, ECulture.enCA, true)]
-        [TestCase(Year, 6, 24, ECulture.enCA, false)]
-        [TestCase(Year, 1, 1, ECulture.ptBR, true)]
+        [TestCase(Year, 07, 25, ECulture.esES, false)]
+        [TestCase(Year, 08, 15, ECulture.esES, true)]
+        [TestCase(Year, 05, 22, ECulture.ptPT, false)]
+        [TestCase(Year, 12, 08, ECulture.ptPT, true)]
+        [TestCase(Year, 04, 21, ECulture.ptBR, true)]
+        [TestCase(Year, 12, 08, ECulture.ptBR, false)]
+        [TestCase(Year, 07, 01, ECulture.enCA, true)]
+        [TestCase(Year, 06, 24, ECulture.enCA, false)]
+        [TestCase(Year, 01, 01, ECulture.ptBR, true)]
         [TestCase(Year, 12, 25, ECulture.enCA, true)]
         public void HolidayDate_ValidateHolidays(int year, int month, int day, ECulture culture, bool isNational)
         {
@@ -38,14 +38,14 @@ namespace World.Holidays.Test.Tests
             }
         }
 
-        [TestCase(Year, 4, 21, ECulture.enCA)]
-        [TestCase(Year, 4, 23, ECulture.enCA)]
-        [TestCase(Year, 7, 1, ECulture.ptBR)]
-        [TestCase(Year, 6, 21, ECulture.ptBR)]
-        [TestCase(Year, 5, 22, ECulture.enUS)]
-        [TestCase(Year, 5, 3, ECulture.enUS)]
+        [TestCase(Year, 04, 21, ECulture.enCA)]
+        [TestCase(Year, 04, 23, ECulture.enCA)]
+        [TestCase(Year, 07, 01, ECulture.ptBR)]
+        [TestCase(Year, 06, 21, ECulture.ptBR)]
+        [TestCase(Year, 05, 22, ECulture.enUS)]
+        [TestCase(Year, 05, 03, ECulture.enUS)]
         [TestCase(Year, 11, 11, ECulture.ptPT)]
-        [TestCase(Year, 3, 7, ECulture.ptPT)]
+        [TestCase(Year, 03, 07, ECulture.ptPT)]
         public void HolidayDate_InvalidHolidays(int year, int month, int day, ECulture culture)
         {
             var fakeDate = new DateTime(year, month, day);
@@ -62,14 +62,14 @@ namespace World.Holidays.Test.Tests
             }
         }
 
-        [TestCase(Year, 5, 22, ECulture.ptPT)]
-        [TestCase(Year, 5, 3, ECulture.ptPT)]
-        [TestCase(Year, 5, 10, ECulture.ptBR)]
-        [TestCase(Year, 8, 9, ECulture.ptBR)]
-        [TestCase(Year, 5, 10, ECulture.enCA)]
-        [TestCase(Year, 6, 21, ECulture.enCA)]
-        [TestCase(Year, 4, 12, ECulture.esES)]
-        [TestCase(Year, 4, 9, ECulture.esES)]
+        [TestCase(Year, 05, 22, ECulture.ptPT)]
+        [TestCase(Year, 05, 03, ECulture.ptPT)]
+        [TestCase(Year, 05, 10, ECulture.ptBR)]
+        [TestCase(Year, 08, 09, ECulture.ptBR)]
+        [TestCase(Year, 05, 10, ECulture.enCA)]
+        [TestCase(Year, 06, 21, ECulture.enCA)]
+        [TestCase(Year, 04, 12, ECulture.esES)]
+        [TestCase(Year, 04, 09, ECulture.esES)]
         public void HolidayDate_ValidateMobileHolidays(int year, int month, int day, ECulture culture)
         {
             var fakeDate = new DateTime(year, month, day);
@@ -86,14 +86,14 @@ namespace World.Holidays.Test.Tests
             }
         }
 
-        [TestCase(Year, 4, 12, ECulture.ptBR, EHolidayName.EasterDay)]
+        [TestCase(Year, 04, 12, ECulture.ptBR, EHolidayName.EasterDay)]
         [TestCase(Year, 10, 12, ECulture.ptBR, EHolidayName.DayOfAparecida)]
-        [TestCase(Year, 4, 13, ECulture.enCA, EHolidayName.EasterMonday)]
-        [TestCase(Year, 8, 3, ECulture.enCA, EHolidayName.AugustCivicHoliday)]
-        [TestCase(Year, 12, 8, ECulture.ptBR, EHolidayName.ImmaculateConception)]
-        [TestCase(Year, 12, 8, ECulture.ptPT, EHolidayName.ImmaculateConception)]
-        [TestCase(Year, 8, 15, ECulture.ptPT, EHolidayName.AssumptionOfMaria)]
-        [TestCase(Year, 8, 15, ECulture.esES, EHolidayName.AssumptionOfMaria)]
+        [TestCase(Year, 04, 13, ECulture.enCA, EHolidayName.EasterMonday)]
+        [TestCase(Year, 08, 03, ECulture.enCA, EHolidayName.AugustCivicHoliday)]
+        [TestCase(Year, 12, 08, ECulture.ptBR, EHolidayName.ImmaculateConception)]
+        [TestCase(Year, 12, 08, ECulture.ptPT, EHolidayName.ImmaculateConception)]
+        [TestCase(Year, 08, 15, ECulture.ptPT, EHolidayName.AssumptionOfMaria)]
+        [TestCase(Year, 08, 15, ECulture.esES, EHolidayName.AssumptionOfMaria)]
         public void HolidayDate_ValidateNameHolidays(int year, int month, int day, ECulture culture, EHolidayName nameHoliday)
         {
             var fakeDate = new DateTime(year, month, day);
@@ -128,7 +128,7 @@ namespace World.Holidays.Test.Tests
             Assert.AreEqual(holidaysInMonth, count);
         }
 
-        [TestCase(Year, 02, 03, ECulture.ptBR)]
+        [TestCase(Year, 11, 02, ECulture.enUS)]
         [TestCase(Year, 04, 04, ECulture.ptPT)]
         [TestCase(Year, 04, 05, ECulture.esES)]
         public void HolidayDate_HolidaysInMonth_DateInDays(int year, int month, int holidaysInMonth, ECulture culture)
@@ -146,20 +146,13 @@ namespace World.Holidays.Test.Tests
             Assert.AreEqual(holidaysInMonth, count);
         }
 
-        [TestCase(03, ECulture.ptBR)]
-        [TestCase(01, ECulture.ptPT)]
-        [TestCase(01, ECulture.esES)]
-        public void HolidayDate_HolidaysInMonth_FromCurrentlyDate(int holidaysInMonth, ECulture culture)
+        [TestCase(02, 03, ECulture.ptBR)]
+        [TestCase(02, 01, ECulture.ptPT)]
+        [TestCase(02, 02, ECulture.esES)]
+        public void HolidayDate_HolidaysInMonth_FromCurrentlyDate(int month, int holidaysInMonth, ECulture culture)
         {
-            var now = DateTime.Now;
-            
-            var fakeStartDate = new DateTime(now.Year, now.Month, 01);
-
-            var fakeEndDate = fakeStartDate.AddMonths(1).AddDays(-1);
-
-            var fakeDays = (fakeEndDate - now).Days;
-
-            var fakeHolidays = DateHolidays.GetFromCurrentlyDate(fakeDays, culture);
+           
+            var fakeHolidays = DateHolidays.GetFromCurrentlyDate(15, culture);
 
             var count = fakeHolidays.Count();
 

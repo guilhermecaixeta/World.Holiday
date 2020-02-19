@@ -18,9 +18,12 @@ namespace World.Holidays.Extensions
         /// </returns>
         public static bool IsBiggerThan(this DateTime d1, DateTime d2)
         {
-            DateIsValid(d2, d1);
+            var d1Ticks = d1.Ticks;
+            var d2Ticks = d2.Ticks;
 
-            return d1.Ticks > d2.Ticks;
+            DateTimeHolidayValidations.DateIsValid(d2Ticks, d1Ticks);
+
+            return d1Ticks > d2Ticks;
         }
 
         /// <summary>
@@ -34,40 +37,16 @@ namespace World.Holidays.Extensions
         /// </returns>
         public static bool IsBetween(this DateTime dateBetween, DateTime dateMin, DateTime dateMax)
         {
-            DateIsValid(dateMin, dateMax, dateBetween);
+            var ticksDateBetween = dateBetween.Ticks;
+            var ticksDateMax = dateMax.Ticks;
+            var ticksDateMin = dateMin.Ticks;
 
-            var isValid = dateMax.Ticks >= dateBetween.Ticks && dateMin.Ticks <= dateBetween.Ticks;
+            DateTimeHolidayValidations.DateIsValid(ticksDateBetween, ticksDateMax, ticksDateMin);
+
+            var isValid = ticksDateMax >= ticksDateBetween && ticksDateMin <= ticksDateBetween;
 
             return isValid;
         }
 
-        /// <summary>
-        /// Check if the dates is valid.
-        /// </summary>
-        /// <param name="dates">The dates.</param>
-        /// <exception cref="World.Holidays.Exceptions.DateTimeMinMaxException"></exception>
-        internal static void DateIsValid(params DateTime[] dates)
-        {
-            foreach (var date in dates)
-            {
-                if (date == DateTime.MinValue || date == DateTime.MaxValue)
-                {
-                    throw new DateTimeMinMaxException(date);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Ints the is valid.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <exception cref="World.Holidays.Exceptions.LessThanZeroException"></exception>
-        internal static void IntIsValid(int value)
-        {
-            if (value < 0)
-            {
-                throw new LessThanZeroException();
-            }
-        }
     }
 }

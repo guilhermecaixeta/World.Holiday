@@ -7,9 +7,9 @@ namespace World.Holidays.Entities.HolidaysList
 {
     internal class WorldHolidays
     {
-        private ECulture Culture;
+        private readonly ECulture Culture;
 
-        private int Year;
+        private readonly int Year;
 
         public WorldHolidays(ECulture culture, int year)
         {
@@ -18,7 +18,7 @@ namespace World.Holidays.Entities.HolidaysList
         }
 
         public IEnumerable<Holiday> Holidays() =>
-            new List<Holiday>()
+            new List<Holiday>
             {
 #region January
                 new Holiday(Year, 01, 01, true, EHolidayName.NewYear.GetDescription(Culture), AllCultures),
