@@ -63,7 +63,7 @@ namespace World.Holidays.Entities
         /// <value>
         /// The date.
         /// </value>
-        public DateTime Date { get; set; }
+        public DateTime Date { get; private set; }
 
         /// <summary>
         /// Gets the days left.
