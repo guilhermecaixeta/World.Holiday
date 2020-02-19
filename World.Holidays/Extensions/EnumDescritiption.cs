@@ -8,7 +8,7 @@ namespace World.Holidays.Extensions
     /// <summary>
     /// Extension to get description by culture
     /// </summary>
-    internal static class EnumDescritiption
+    public static class EnumDescritiption
     {
         /// <summary>
         /// Gets the description.

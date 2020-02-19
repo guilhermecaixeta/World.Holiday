@@ -3,7 +3,7 @@
 namespace World.Holidays.Exceptions
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <seealso cref="System.Exception" />
     public class DateTimeMinMaxException : Exception
@@ -15,7 +15,6 @@ namespace World.Holidays.Exceptions
         /// </summary>
         public DateTimeMinMaxException() : base()
         {
-
         }
 
         /// <summary>
@@ -24,7 +23,6 @@ namespace World.Holidays.Exceptions
         /// <param name="dateTime">The date time.</param>
         public DateTimeMinMaxException(DateTime dateTime) : base(string.Format(message, dateTime))
         {
-
         }
 
         /// <summary>
@@ -34,7 +32,6 @@ namespace World.Holidays.Exceptions
         /// <param name="innerException">The inner exception.</param>
         public DateTimeMinMaxException(DateTime dateTime, Exception innerException) : base(string.Format(message, dateTime), innerException)
         {
-
         }
     }
 }
