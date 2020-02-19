@@ -94,7 +94,10 @@ Returning JSON like this
 ## Status
 
 ### Travis CI
-[![Build Status](https://travis-ci.org/guilhermecaixeta/World.Holiday.DotNetCore2.2.svg?branch=master)](https://travis-ci.org/guilhermecaixeta/World.Holiday.DotNetCore2.2)
+[![Build Status](https://travis-ci.org/guilhermecaixeta/World.Holiday.svg?branch=master)](https://travis-ci.org/guilhermecaixeta/World.Holiday)
+
+### AppVeyor
+[![Build status](https://ci.appveyor.com/api/projects/status/rs5ranyllu0g9h08?svg=true)](https://ci.appveyor.com/project/guilhermecaixeta/world-holiday)
 
 ### Code Quality
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a07c597ca4864152ae6bbb88ecb15ada)](https://www.codacy.com/manual/guilhermecaixeta/World.Holiday?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=guilhermecaixeta/World.Holiday&amp;utm_campaign=Badge_Grade)

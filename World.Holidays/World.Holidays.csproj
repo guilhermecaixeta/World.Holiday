@@ -17,10 +17,12 @@ es-ES</Description>
     <RepositoryUrl>https://github.com/guilhermecaixeta/World.Holiday/</RepositoryUrl>
     <RepositoryType>https://github.com/guilhermecaixeta/World.Holiday/</RepositoryType>
     <PackageTags>Holidays, .NetCore, PtBR, EnUS, EnCA, EsES,PtPT</PackageTags>
-    <PackageReleaseNotes>V.1.0.1
+    <PackageReleaseNotes>
+V.1.0.1
 Package was upgraded to net standard 2.1
 Was re-writed to improve perfomance
 two new countries added
+New extension methods
 </PackageReleaseNotes>
   </PropertyGroup>
 
