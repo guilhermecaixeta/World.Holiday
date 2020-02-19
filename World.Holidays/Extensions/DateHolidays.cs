@@ -21,7 +21,7 @@ namespace World.Holidays.Extensions
         /// <returns></returns>
         public static DateTimeHoliday IsHoliday(this DateTime date, ECulture culture)
         {
-            DateIsValid(date);
+            DateTimeExtension.DateIsValid(date);
 
             var worldHolidays = new WorldHolidays(culture, date.Year).Holidays().ToList();
 
@@ -38,7 +38,7 @@ namespace World.Holidays.Extensions
         }
 
         /// <summary>
-        /// Gets the in interval.
+        /// Gets holidays from the in interval.
         /// </summary>
         /// <param name="min">The minimum.</param>
         /// <param name="max">The maximum.</param>
@@ -46,7 +46,12 @@ namespace World.Holidays.Extensions
         /// <returns></returns>
         public static IEnumerable<Holiday> GetInInterval(DateTime min, DateTime max, ECulture culture)
         {
-            DateIsValid(min, max);
+            DateTimeExtension.DateIsValid(min, max);
+
+            if (min.IsBiggerThan(max))
+            {
+                throw new MinDateIsBiggerThanMaxDate(min, max);
+            }
 
             var holidays = new List<Holiday>();
 
@@ -62,17 +67,21 @@ namespace World.Holidays.Extensions
         }
 
         /// <summary>
-        /// Gets the in interval.
+        /// Gets holidays from the in interval.
         /// </summary>
         /// <param name="date">The date.</param>
         /// <param name="days">The days.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
-        public static IEnumerable<Holiday> GetInInterval(DateTime date, int days, ECulture culture) =>
-             GetInInterval(date, date.AddDays(days), culture);
+        public static IEnumerable<Holiday> GetInInterval(DateTime date, int days, ECulture culture)
+        {
+            DateTimeExtension.IntIsValid(days);
+
+            return GetInInterval(date, date.AddDays(days), culture);
+        }
 
         /// <summary>
-        /// Gets from currently date.
+        /// Gets holidays from currently date.
         /// </summary>
         /// <param name="days">The days.</param>
         /// <param name="culture">The culture.</param>
@@ -80,23 +89,9 @@ namespace World.Holidays.Extensions
         public static IEnumerable<Holiday> GetFromCurrentlyDate(int days, ECulture culture)
         {
             var date = DateTime.Now;
-            return GetInInterval(date, date.AddDays(days), culture);
+
+            return GetInInterval(date, days, culture);
         }
 
-        /// <summary>
-        /// Check if the dates is valid.
-        /// </summary>
-        /// <param name="dates">The dates.</param>
-        /// <exception cref="World.Holidays.Exceptions.DateTimeMinMaxException"></exception>
-        internal static void DateIsValid(params DateTime[] dates)
-        {
-            foreach (var date in dates)
-            {
-                if (date == DateTime.MinValue || date == DateTime.MaxValue)
-                {
-                    throw new DateTimeMinMaxException(date);
-                }
-            }
-        }
     }
 }

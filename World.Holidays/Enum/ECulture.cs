@@ -74,6 +74,9 @@ namespace World.Holidays.Enum
         /// </summary>
         internal const ECulture PtCulture = ECulture.ptBR | ECulture.ptPT;
 
+        /// <summary>
+        /// The culturept ptes
+        /// </summary>
         internal const ECulture CultureptPTES = ECulture.ptPT | ECulture.esES;
     }
 }

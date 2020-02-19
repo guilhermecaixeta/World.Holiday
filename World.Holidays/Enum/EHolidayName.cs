@@ -64,6 +64,7 @@ namespace World.Holidays.Enum
         [DescriptionHoliday("Navidad", ECulture.esES)]
         ChristmasDay,
 
+        [DescriptionHoliday("Restauração da Independência", ECulture.ptPT)]
         [DescriptionHoliday("Independência do Brasil", ECulture.ptBR)]
         [DescriptionHoliday("Independence Day", ECulture.enUS)]
         IndependencyDay,
@@ -102,5 +103,119 @@ namespace World.Holidays.Enum
         [DescriptionHoliday("Todos os Santos", ECulture.ptPT)]
         [DescriptionHoliday("Fiesta de Todos los Santos", ECulture.esES)]
         AllSaintsDay,
+
+        [DescriptionHoliday("Epifanía / Reyes Magos", ECulture.esES)]
+        Epiphany,
+
+        [DescriptionHoliday("Family Day", ECulture.enCA)]
+        FamilyDay,
+
+        [DescriptionHoliday("Washington's Birthday", ECulture.enUS)]
+        WashingtonsBirthday,
+
+        [DescriptionHoliday("Día de Andalucía", ECulture.esES)]
+        AndaluciaDay,
+
+        [DescriptionHoliday("St. Patrick's Day", ECulture.enCA)]
+        StPatrickDay,
+
+        [DescriptionHoliday("Data magna do estado do Ceará", ECulture.ptBR)]
+        MagnaLetterOfCeara,
+
+        [DescriptionHoliday("Día de las Illes Balears", ECulture.esES)]
+        DayOfIllesBalears,
+
+        [DescriptionHoliday("Tiradentes", ECulture.ptBR)]
+        Tiradentes,
+
+        [DescriptionHoliday("Dia da Liberdade", ECulture.ptPT)]
+        LibertyDay,
+
+        [DescriptionHoliday("Victoria Day", ECulture.enCA)]
+        VictoriaDay,
+
+        [DescriptionHoliday("Memorial Day", ECulture.enUS)]
+        MemorialDay,
+
+        [DescriptionHoliday("San Isidro", ECulture.esES)]
+        SanIsidro,
+
+        [DescriptionHoliday("Día de Canarias", ECulture.esES)]
+        CanariasDay,
+
+        [DescriptionHoliday("Dia de Santo António", ECulture.esES)]
+        StAnthonysDay,
+
+        [DescriptionHoliday("Día de la Región de Murcia", ECulture.esES)]
+        DayOfMurciaRegion,
+
+        [DescriptionHoliday("Santiago Apóstol", ECulture.esES)]
+        SantiagoApostle,
+
+        [DescriptionHoliday("Día de Asturias", ECulture.esES)]
+        DayOfAsturias,
+
+        [DescriptionHoliday("Día de la Comunidad Valenciana", ECulture.esES)]
+        DayOfValencianCommunity,
+
+        [DescriptionHoliday("Virgen de la Almudena", ECulture.esES)]
+        VirginOfAlmudena,
+
+        [DescriptionHoliday("Día de la Constitución", ECulture.esES)]
+        ConstitutionDay,
+
+        [DescriptionHoliday("Fiesta Nacional de España", ECulture.esES)]
+        NationalFiestaOfSpain,
+
+        [DescriptionHoliday("Fiesta Nacional de Cataluña", ECulture.esES)]
+        NationalFiestaOfCatalunia,
+
+        [DescriptionHoliday("National Aboriginal Day", ECulture.enCA)]
+        NationalAboriginalDay,
+
+        [DescriptionHoliday("National Holiday of Quebec", ECulture.enCA)]
+        NationalHolidayOfQuebec,
+
+        [DescriptionHoliday("Canada Day", ECulture.enCA)]
+        CanadaDay,
+
+        [DescriptionHoliday("Nunavut Day", ECulture.enCA)]
+        NunavutDay,
+
+        [DescriptionHoliday("August Civic Holiday", ECulture.enCA)]
+        AugustCivicHoliday,
+
+        [DescriptionHoliday("Remembrance Day", ECulture.enCA)]
+        RemembranceDay,
+
+        [DescriptionHoliday("Boxing Day", ECulture.enCA)]
+        BoxingDay,
+
+        [DescriptionHoliday("Independência da Bahia (BA)", ECulture.ptBR)]
+        IndependenceOfBahia,
+
+        [DescriptionHoliday("Revolução Constitucionalista de 1932 (SP)", ECulture.ptBR)]
+        ConstitutionalistRevolutionOf1932,
+
+        [DescriptionHoliday("Nossa Senhora Aparecida", ECulture.ptBR)]
+        DayOfAparecida,
+
+        [DescriptionHoliday("Dia dos finados", ECulture.ptBR)]
+        DayOfDeads,
+
+        [DescriptionHoliday("Proclamação da República", ECulture.ptBR)]
+        ProclamationOfRepublic,
+
+        [DescriptionHoliday("Dia da Consciência Negra", ECulture.ptBR)]
+        BlackConscienceDay,
+
+        [DescriptionHoliday("Implantação da República", ECulture.ptPT)]
+        ImplantationOfRepublic,
+
+        [DescriptionHoliday("Columbus Day", ECulture.enUS)]
+        ColumbusDay,
+
+        [DescriptionHoliday("Veterans Day", ECulture.enUS)]
+        VeteransDay,
     }
 }
