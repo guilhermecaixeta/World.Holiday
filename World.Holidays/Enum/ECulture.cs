@@ -8,6 +8,41 @@ namespace World.Holidays.Enum
     public class Culture
     {
         /// <summary>
+        /// All Cultures
+        /// </summary>
+        internal const ECulture AllCultures = ECulture.enCA | ECulture.enUS | ECulture.ptBR | ECulture.ptPT | ECulture.esES;
+
+        /// <summary>
+        /// The culturept ptes
+        /// </summary>
+        internal const ECulture CultureptPTES = ECulture.ptPT | ECulture.esES;
+
+        /// <summary>
+        /// The easter day culture
+        /// </summary>
+        internal const ECulture EasterDayCulture = ECulture.enUS | ECulture.ptBR | ECulture.ptPT;
+
+        /// <summary>
+        /// The easter monday
+        /// </summary>
+        internal const ECulture EasterMonday = ECulture.enCA | ECulture.ptPT | ECulture.esES;
+
+        /// <summary>
+        /// The en culture
+        /// </summary>
+        internal const ECulture EnCulture = ECulture.enCA | ECulture.enUS;
+
+        /// <summary>
+        /// The pt culture
+        /// </summary>
+        internal const ECulture PtCulture = ECulture.ptBR | ECulture.ptPT;
+
+        /// <summary>
+        /// The valentine day
+        /// </summary>
+        internal const ECulture ValentineDayCulture = ECulture.enCA | ECulture.enUS | ECulture.ptPT;
+
+        /// <summary>
         /// Enum culture
         /// </summary>
         [Flags]
@@ -43,40 +78,5 @@ namespace World.Holidays.Enum
             /// </summary>
             esES = 0x06,
         }
-
-        /// <summary>
-        /// All Cultures
-        /// </summary>
-        internal const ECulture AllCultures = ECulture.enCA | ECulture.enUS | ECulture.ptBR | ECulture.ptPT | ECulture.esES;
-
-        /// <summary>
-        /// The easter monday
-        /// </summary>
-        internal const ECulture EasterMonday = ECulture.enCA | ECulture.ptPT | ECulture.esES;
-
-        /// <summary>
-        /// The easter day culture
-        /// </summary>
-        internal const ECulture EasterDayCulture = ECulture.enUS | ECulture.ptBR | ECulture.ptPT;
-
-        /// <summary>
-        /// The valentine day
-        /// </summary>
-        internal const ECulture ValentineDayCulture = ECulture.enCA | ECulture.enUS | ECulture.ptPT;
-
-        /// <summary>
-        /// The en culture
-        /// </summary>
-        internal const ECulture EnCulture = ECulture.enCA | ECulture.enUS;
-
-        /// <summary>
-        /// The pt culture
-        /// </summary>
-        internal const ECulture PtCulture = ECulture.ptBR | ECulture.ptPT;
-
-        /// <summary>
-        /// The culturept ptes
-        /// </summary>
-        internal const ECulture CultureptPTES = ECulture.ptPT | ECulture.esES;
     }
 }

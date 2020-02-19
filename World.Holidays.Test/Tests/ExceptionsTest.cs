@@ -10,12 +10,12 @@ namespace World.Holidays.Test.Tests
     public class ExceptionsTest
     {
         [Test]
-        public void DateTimeHoliday_IsHoliday_DateMinException() =>
-            Assert.Throws<DateTimeMinMaxException>(() => DateTime.MinValue.IsHoliday(ECulture.ptBR));
-
-        [Test]
         public void DateTimeHoliday_IsHoliday_DateMaxException() =>
             Assert.Throws<DateTimeMinMaxException>(() => DateTime.MaxValue.IsHoliday(ECulture.ptBR));
+
+        [Test]
+        public void DateTimeHoliday_IsHoliday_DateMinException() =>
+            Assert.Throws<DateTimeMinMaxException>(() => DateTime.MinValue.IsHoliday(ECulture.ptBR));
 
         [Test]
         public void DateTimeHoliday_SetInterval_ECultureDefault_ArgumentNullException() =>

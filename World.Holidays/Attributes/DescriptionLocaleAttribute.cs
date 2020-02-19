@@ -22,19 +22,19 @@ namespace World.Holidays.Attributes
         }
 
         /// <summary>
-        /// Gets or sets the description.
-        /// </summary>
-        /// <value>
-        /// The description.
-        /// </value>
-        public string Description { get; private set; }
-
-        /// <summary>
         /// Gets or sets the culture.
         /// </summary>
         /// <value>
         /// The culture.
         /// </value>
         public ECulture Culture { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        /// <value>
+        /// The description.
+        /// </value>
+        public string Description { get; private set; }
     }
 }

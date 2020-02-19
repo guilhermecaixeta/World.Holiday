@@ -37,19 +37,19 @@ namespace World.Holidays.Entities
         public bool HasHoliday { get => HolidaysInMonth.Any(); }
 
         /// <summary>
-        /// Gets or sets the holidays in month.
-        /// </summary>
-        /// <value>
-        /// The holidays in month.
-        /// </value>
-        private IEnumerable<Holiday> HolidaysInMonth { get; set; }
-
-        /// <summary>
         /// Gets the holidays.
         /// </summary>
         /// <value>
         /// The holidays.
         /// </value>
         public IReadOnlyList<Holiday> Holidays { get => HolidaysInMonth.ToList(); }
+
+        /// <summary>
+        /// Gets or sets the holidays in month.
+        /// </summary>
+        /// <value>
+        /// The holidays in month.
+        /// </value>
+        private IEnumerable<Holiday> HolidaysInMonth { get; set; }
     }
 }

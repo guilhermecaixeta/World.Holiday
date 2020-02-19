@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace World.Holidays.Exceptions
 {
@@ -17,7 +15,6 @@ namespace World.Holidays.Exceptions
         /// </summary>
         public MinDateIsBiggerThanMaxDate()
         {
-
         }
 
         /// <summary>
@@ -27,7 +24,6 @@ namespace World.Holidays.Exceptions
         /// <param name="max">The maximum.</param>
         public MinDateIsBiggerThanMaxDate(DateTime min, DateTime max) : base(string.Format(message, min, max))
         {
-
         }
 
         /// <summary>
@@ -38,7 +34,6 @@ namespace World.Holidays.Exceptions
         /// <param name="innerException">The inner exception.</param>
         public MinDateIsBiggerThanMaxDate(DateTime min, DateTime max, Exception innerException) : base(string.Format(message, min, max), innerException)
         {
-
         }
     }
 }

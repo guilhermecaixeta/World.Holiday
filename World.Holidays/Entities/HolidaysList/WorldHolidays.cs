@@ -21,6 +21,7 @@ namespace World.Holidays.Entities.HolidaysList
             new List<Holiday>
             {
 #region January
+
                 new Holiday(Year, 01, 01, true, EHolidayName.NewYear.GetDescription(Culture), AllCultures),
                 //ES-ES
                 new Holiday(Year, 01, 06, true, EHolidayName.Epiphany.GetDescription(Culture), ECulture.esES),
@@ -28,6 +29,7 @@ namespace World.Holidays.Entities.HolidaysList
 #endregion January
 
 #region February
+
                 //EN-CA
                 new Holiday(Year, 02,17, false, EHolidayName.FamilyDay.GetDescription(Culture),ECulture.enCA),
                 //PT-BR
@@ -40,6 +42,7 @@ namespace World.Holidays.Entities.HolidaysList
 #endregion February
 
 #region March
+
                 //EN-CA
                 new Holiday(Year, 03,17, false, EHolidayName.StPatrickDay.GetDescription(Culture),ECulture.enCA),
                 //PT-BR
@@ -54,6 +57,7 @@ namespace World.Holidays.Entities.HolidaysList
 #endregion March
 
 #region April
+
                 //PT-BR
                 new Holiday(Year, 04, 21, true, EHolidayName.Tiradentes.GetDescription(Culture), ECulture.ptBR),
                 //ES-PT
@@ -64,6 +68,7 @@ namespace World.Holidays.Entities.HolidaysList
 #endregion April
 
 #region May
+
                 //EN-CA
                 new Holiday(Year, 05, 18, false, EHolidayName.VictoriaDay.GetDescription(Culture),ECulture.enCA),
                 //PT-ES
@@ -80,6 +85,7 @@ namespace World.Holidays.Entities.HolidaysList
 #endregion May
 
 #region June
+
                 //EN-CA
                 new Holiday(Year, 06, 21, false, EHolidayName.NationalAboriginalDay.GetDescription(Culture), ECulture.enCA),
                 new Holiday(Year, 06, 24, false, EHolidayName.NationalHolidayOfQuebec.GetDescription(Culture), ECulture.enCA),
@@ -101,6 +107,7 @@ namespace World.Holidays.Entities.HolidaysList
 #endregion June
 
 #region July
+
                 //EN-CA
                 new Holiday(Year, 07, 01, true, EHolidayName.CanadaDay.GetDescription(Culture),ECulture.enCA),
                 new Holiday(Year, 07, 09, false, EHolidayName.NunavutDay.GetDescription(Culture),ECulture.enCA),
@@ -128,6 +135,7 @@ namespace World.Holidays.Entities.HolidaysList
 #endregion August
 
 #region September
+
                 //EN
                 new Holiday(Year, 09, 07, true, EHolidayName.LabourDay.GetDescription(Culture), EnCulture),
                 //PT-BR
@@ -139,6 +147,7 @@ namespace World.Holidays.Entities.HolidaysList
 #endregion September
 
 #region October
+
                 //EN-CA
                 new Holiday(Year, 10, 12, false, EHolidayName.Thanksgiving.GetDescription(Culture), ECulture.enCA),
                 //PT-BR
@@ -154,6 +163,7 @@ namespace World.Holidays.Entities.HolidaysList
 #endregion October
 
 #region November #Rain
+
                 //EN-CA
                 new Holiday(Year, 11, 11, false, EHolidayName.RemembranceDay.GetDescription(Culture),ECulture.enCA),
                 //PT-BR
@@ -171,6 +181,7 @@ namespace World.Holidays.Entities.HolidaysList
 #endregion November #Rain
 
 #region December
+
                 // EN-CA
                 new Holiday(Year, 12, 26, false, EHolidayName.BoxingDay.GetDescription(Culture), ECulture.enCA),
                 //PT-PT
@@ -184,6 +195,7 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 12, 25, true, EHolidayName.ChristmasDay.GetDescription(Culture), AllCultures),
                 // ES-ES
                 new Holiday(Year, 12, 06, false, EHolidayName.ConstitutionDay.GetDescription(Culture), ECulture.esES)
+
 #endregion December
             };
 

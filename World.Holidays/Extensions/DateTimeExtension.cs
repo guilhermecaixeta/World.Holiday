@@ -1,5 +1,4 @@
 ﻿using System;
-using World.Holidays.Exceptions;
 
 namespace World.Holidays.Extensions
 {
@@ -8,24 +7,6 @@ namespace World.Holidays.Extensions
     /// </summary>
     public static class DateTimeExtension
     {
-        /// <summary>
-        /// Determines whether [is bigger than] [the specified d2].
-        /// </summary>
-        /// <param name="d1">The d1.</param>
-        /// <param name="d2">The d2.</param>
-        /// <returns>
-        ///   <c>true</c> if [is bigger than] [the specified d2]; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool IsBiggerThan(this DateTime d1, DateTime d2)
-        {
-            var d1Ticks = d1.Ticks;
-            var d2Ticks = d2.Ticks;
-
-            DateTimeHolidayValidations.DateIsValid(d2Ticks, d1Ticks);
-
-            return d1Ticks > d2Ticks;
-        }
-
         /// <summary>
         /// Determines whether the specified date minimum is between.
         /// </summary>
@@ -48,5 +29,22 @@ namespace World.Holidays.Extensions
             return isValid;
         }
 
+        /// <summary>
+        /// Determines whether [is bigger than] [the specified d2].
+        /// </summary>
+        /// <param name="d1">The d1.</param>
+        /// <param name="d2">The d2.</param>
+        /// <returns>
+        ///   <c>true</c> if [is bigger than] [the specified d2]; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsBiggerThan(this DateTime d1, DateTime d2)
+        {
+            var d1Ticks = d1.Ticks;
+            var d2Ticks = d2.Ticks;
+
+            DateTimeHolidayValidations.DateIsValid(d2Ticks, d1Ticks);
+
+            return d1Ticks > d2Ticks;
+        }
     }
 }

@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using World.Holidays.Exceptions;
 
 namespace World.Holidays.Extensions
 {
     internal static class DateTimeHolidayValidations
     {
-
         /// <summary>
         /// Dates the is valid.
         /// </summary>
@@ -41,6 +37,5 @@ namespace World.Holidays.Extensions
                 throw new LessThanZeroException();
             }
         }
-
     }
 }

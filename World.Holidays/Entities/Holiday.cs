@@ -61,6 +61,14 @@ namespace World.Holidays.Entities
         }
 
         /// <summary>
+        /// Gets the culture.
+        /// </summary>
+        /// <value>
+        /// The culture.
+        /// </value>
+        public ECulture Culture { get; private set; }
+
+        /// <summary>
         /// Gets or sets the date.
         /// </summary>
         /// <value>
@@ -69,20 +77,20 @@ namespace World.Holidays.Entities
         public DateTime Date { get; private set; }
 
         /// <summary>
-        /// Gets the days left.
-        /// </summary>
-        /// <value>
-        /// The days left.
-        /// </value>
-        public int? DaysLeft { get; private set; } = 0;
-
-        /// <summary>
         /// Gets the day.
         /// </summary>
         /// <value>
         /// The day.
         /// </value>
         public int? Day { get => Date.Day; }
+
+        /// <summary>
+        /// Gets the days left.
+        /// </summary>
+        /// <value>
+        /// The days left.
+        /// </value>
+        public int? DaysLeft { get; private set; } = 0;
 
         /// <summary>
         /// Gets a value indicating whether this instance is national.
@@ -111,14 +119,6 @@ namespace World.Holidays.Entities
         /// The name.
         /// </value>
         public string Name { get; private set; }
-
-        /// <summary>
-        /// Gets the culture.
-        /// </summary>
-        /// <value>
-        /// The culture.
-        /// </value>
-        public ECulture Culture { get; private set; }
 
         internal long Ticks { get; private set; }
 

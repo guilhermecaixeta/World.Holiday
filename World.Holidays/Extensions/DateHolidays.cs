@@ -14,29 +14,16 @@ namespace World.Holidays.Extensions
     public static class DateHolidays
     {
         /// <summary>
-        /// Determines whether the specified date is holidays for the informed culture.
+        /// Gets holidays from currently date.
         /// </summary>
-        /// <param name="date">The date.</param>
+        /// <param name="days">The days.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
-        public static DateTimeHoliday IsHoliday(this DateTime date, ECulture culture)
+        public static IEnumerable<Holiday> GetFromCurrentlyDate(int days, ECulture culture)
         {
-            var ticks = date.Date.Ticks;
+            var date = DateTime.Now;
 
-            DateTimeHolidayValidations.DateIsValid(ticks);
-
-            var worldHolidays = new WorldHolidays(culture, date.Year).Holidays().ToList();
-
-            var holidays = worldHolidays.
-                Where(x => (culture & x.Culture) == culture && x.Ticks == ticks);
-
-            var mobileHoliday = FindMobileHolidays.GetMobileHoliday(ticks, culture);
-
-            holidays = holidays.Concat(mobileHoliday);
-
-            var dateHoliday = new DateTimeHoliday(date, holidays);
-
-            return dateHoliday;
+            return GetInInterval(date, days, culture);
         }
 
         /// <summary>
@@ -84,17 +71,29 @@ namespace World.Holidays.Extensions
         }
 
         /// <summary>
-        /// Gets holidays from currently date.
+        /// Determines whether the specified date is holidays for the informed culture.
         /// </summary>
-        /// <param name="days">The days.</param>
+        /// <param name="date">The date.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
-        public static IEnumerable<Holiday> GetFromCurrentlyDate(int days, ECulture culture)
+        public static DateTimeHoliday IsHoliday(this DateTime date, ECulture culture)
         {
-            var date = DateTime.Now;
+            var ticks = date.Date.Ticks;
 
-            return GetInInterval(date, days, culture);
+            DateTimeHolidayValidations.DateIsValid(ticks);
+
+            var worldHolidays = new WorldHolidays(culture, date.Year).Holidays().ToList();
+
+            var holidays = worldHolidays.
+                Where(x => (culture & x.Culture) == culture && x.Ticks == ticks);
+
+            var mobileHoliday = FindMobileHolidays.GetMobileHoliday(ticks, culture);
+
+            holidays = holidays.Concat(mobileHoliday);
+
+            var dateHoliday = new DateTimeHoliday(date, holidays);
+
+            return dateHoliday;
         }
-
     }
 }

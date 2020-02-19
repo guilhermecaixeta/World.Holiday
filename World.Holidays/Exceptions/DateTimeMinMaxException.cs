@@ -13,7 +13,7 @@ namespace World.Holidays.Exceptions
         /// <summary>
         /// Initializes a new instance of the <see cref="DateTimeMinMaxException"/> class.
         /// </summary>
-        public DateTimeMinMaxException() : base()
+        public DateTimeMinMaxException()
         {
         }
 
