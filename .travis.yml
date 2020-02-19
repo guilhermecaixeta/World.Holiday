@@ -1,17 +1,40 @@
+env:
+    - sonarQube
+
 language: csharp
-mono: none
+os: linux
+mono: latest
 sudo: required
 dist: xenial
-dotnet: 2.2
+dotnet: 3.1
+
+addons:
+    apt:
+        packages:
+            - gettext
+            - libcurl4-openssl-dev
+            - libicu-dev
+            - libssl-dev
+            - libunwind8
+            - zlib1g
+
+before_install:
+    #   - git fetch --unshallow # Travis always does a shallow clone, but GitVersion needs the full history including branches and tags
+    - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+    - git fetch origin
+
+install:
+    - sudo apt-get install -qq dotnet-sdk-2.1.0
+
 script:
-    - dotnet restore
-    - dotnet build
-    - dotnet test test/Test.csproj --filter TestCategory!=OPTIONAL-TEST
-after_script:
-    - pip install --user awscli
-    - export PATH=$PATH:$HOME/.local/bin
-    - aws ecr get-login --region us-west-2 --no-include-email
-    - aws lambda invoke --function-name noscore-travis --region us-west-2 --payload '{"Build_Id":"'"$TRAVIS_JOB_ID"'", "Travis_Branch":"'"$TRAVIS_BRANCH"'", "Travis_Test_Result":"'"$TRAVIS_TEST_RESULT"'", "Travis_Commit":"'"$TRAVIS_COMMIT"'", "Travis_Repo_Slug":"'"$TRAVIS_REPO_SLUG"'", "Travis_Pull_Request":"'"$TRAVIS_PULL_REQUEST"'"}' outputfile
+    # You must run this command to give Travis permissions to execute the build.sh shell script:
+    # git update-index --chmod=+x ./build.sh
+    - bash ./build.sh
+    # - dotnet restore
+    # - dotnet build
+    # - cd tests/Generic.Repository.Test
+    # - dotnet test
+
 global:
     - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-    - DOTNET_CLI_TELEMETRY_OPTOUT=1
+    - DOTNET_CLI_TELEMETRY_OPTOUT=true
