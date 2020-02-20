@@ -20,11 +20,11 @@ namespace World.Holidays.Enum
         ValentineDay,
 
         [DescriptionHoliday("Good Friday", ECulture.enCA)]
-        [DescriptionHoliday("Sexta Feira Santa", PtCulture)]
+        [DescriptionHoliday("Sexta-Feira Santa", PtCulture)]
         [DescriptionHoliday("Viernes Santo", ECulture.esES)]
         GoodFriday,
 
-        [DescriptionHoliday("Quarta Feira de Cinzas", ECulture.ptBR)]
+        [DescriptionHoliday("Quarta-Feira de Cinzas", ECulture.ptBR)]
         AshWednesday,
 
         [DescriptionHoliday("Mardi Grass", ECulture.enUS)]
@@ -45,7 +45,7 @@ namespace World.Holidays.Enum
         MotherDay,
 
         [DescriptionHoliday("Labour Day", ECulture.enCA)]
-        [DescriptionHoliday("Dia do Trabalho", ECulture.ptBR)]
+        [DescriptionHoliday("Dia do Trabalho", PtCulture)]
         [DescriptionHoliday("Día del Trabajo", ECulture.esES)]
         LabourDay,
 
@@ -60,7 +60,7 @@ namespace World.Holidays.Enum
         EasterMonday,
 
         [DescriptionHoliday("Natal", PtCulture)]
-        [DescriptionHoliday("Christma's Day", ECulture.enCA)]
+        [DescriptionHoliday("Christma's Day", EnCulture)]
         [DescriptionHoliday("Navidad", ECulture.esES)]
         ChristmasDay,
 
