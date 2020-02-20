@@ -114,7 +114,7 @@ namespace World.Holidays.Extensions
                 return null;
             }
 
-            if ((culture & EnCulture) == culture && month != 7)
+            if ((culture & EnCulture) == culture && month != 6)
             {
                 return null;
             }
@@ -208,7 +208,7 @@ namespace World.Holidays.Extensions
                 new Holiday(EasterDay.AddDays(-46), true, EHolidayName.AshWednesday.GetDescription(culture), ECulture.ptBR),
                 new Holiday(EasterDay.AddDays(-47), culture != ECulture.ptPT, EHolidayName.MardiGrass.GetDescription(culture), PtCulture),
                 new Holiday(EasterDay.AddDays(-48), true, EHolidayName.MardiGrass.GetDescription(culture), ECulture.ptBR),
-                new Holiday(EasterDay.AddDays(60), false, EHolidayName.CorpusChristi.GetDescription(culture), PtCulture),
+                new Holiday(EasterDay.AddDays(60), false, EHolidayName.CorpusChristi.GetDescription(culture), PtCulture | ECulture.esES),
                 new Holiday(EasterDay.AddDays(40), false, EHolidayName.AscensionThursday.GetDescription(culture), ECulture.ptPT),
                 new Holiday(EasterDay.AddDays(0), true, EHolidayName.EasterDay.GetDescription(culture), PtCulture | ECulture.esES),
                 new Holiday(EasterDay.AddDays(1), false, EHolidayName.EasterMonday.GetDescription(culture), EasterMonday)
