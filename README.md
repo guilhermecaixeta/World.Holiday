@@ -105,6 +105,9 @@ If you want add new Culture in this project fell free to join to me, open a PR a
 
 ## Status
 
+### Git Actions
+![ASP.NET Core CI](https://github.com/guilhermecaixeta/World.Holiday/workflows/ASP.NET%20Core%20CI/badge.svg?branch=master)
+
 ### Travis CI
 [![Build Status](https://travis-ci.org/guilhermecaixeta/World.Holiday.svg?branch=master)](https://travis-ci.org/guilhermecaixeta/World.Holiday)
 
