@@ -11,7 +11,7 @@ namespace World.Holidays.Enum
         None,
 
         [DescriptionHoliday("New Year", EnCulture)]
-        [DescriptionHoliday("Ano Novo", ECulture.ptBR)]
+        [DescriptionHoliday("Ano Novo", PtCulture)]
         [DescriptionHoliday("Año Novo", ECulture.esES)]
         NewYear,
 
@@ -50,7 +50,7 @@ namespace World.Holidays.Enum
         LabourDay,
 
         [DescriptionHoliday("Easter Day", ECulture.enUS)]
-        [DescriptionHoliday("Páscoa", ECulture.ptBR)]
+        [DescriptionHoliday("Páscoa", PtCulture)]
         [DescriptionHoliday("Domingo de Resurrección", ECulture.esES)]
         EasterDay,
 
@@ -59,7 +59,7 @@ namespace World.Holidays.Enum
         [DescriptionHoliday("Lunes de Pascua", ECulture.esES)]
         EasterMonday,
 
-        [DescriptionHoliday("Natal", ECulture.ptBR)]
+        [DescriptionHoliday("Natal", PtCulture)]
         [DescriptionHoliday("Christma's Day", ECulture.enCA)]
         [DescriptionHoliday("Navidad", ECulture.esES)]
         ChristmasDay,
@@ -85,18 +85,18 @@ namespace World.Holidays.Enum
         [DescriptionHoliday("La Inmaculada Concepción", ECulture.esES)]
         ImmaculateConception,
 
-        [DescriptionHoliday("São José", ECulture.ptBR)]
+        [DescriptionHoliday("São José", PtCulture)]
         [DescriptionHoliday("San José", ECulture.esES)]
         SaintJose,
 
-        [DescriptionHoliday("Dia de São Jorge", ECulture.ptBR)]
+        [DescriptionHoliday("Dia de São Jorge", PtCulture)]
         [DescriptionHoliday("San Jorge", ECulture.esES)]
         SaintGeorge,
 
         [DescriptionHoliday("Jueves Santo", ECulture.esES)]
         HolyThursday,
 
-        [DescriptionHoliday("São João", ECulture.ptBR)]
+        [DescriptionHoliday("São João", PtCulture)]
         [DescriptionHoliday("San Juan", ECulture.esES)]
         SanJuan,
 
