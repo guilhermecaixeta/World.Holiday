@@ -13,7 +13,7 @@ namespace World.Holidays.Test.Tests
         private const int Year = 2020;
 
         [TestCase(Year, 11, 02, ECulture.enUS)]
-        [TestCase(Year, 04, 04, ECulture.ptPT)]
+        [TestCase(Year, 02, 02, ECulture.ptPT)]
         [TestCase(Year, 04, 05, ECulture.esES)]
         public void HolidayDate_HolidaysInMonth_DateInDays(int year, int month, int holidaysInMonth, ECulture culture)
         {
