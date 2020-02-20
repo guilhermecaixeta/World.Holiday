@@ -7,7 +7,7 @@ environment:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
   NUGET_KEY:
-    secure: I7+DNEf68Q58NXUqUhhs6L46S1pUpjZ5lS1tx3FtyGk=
+    secure: A83zH4BAwtCuWcVM8CJ8/duFi5fXVNKK7y9cF5+2ib8=
 build_script:
   - ps: .\build.ps1
 test: on
