@@ -209,6 +209,9 @@ namespace World.Holidays.Enum
         [DescriptionHoliday("Dia da Consciência Negra", ECulture.ptBR)]
         BlackConscienceDay,
 
+        [DescriptionHoliday("Dia de Portugal", ECulture.ptPT)]
+        PortugalDay,
+
         [DescriptionHoliday("Implantação da República", ECulture.ptPT)]
         ImplantationOfRepublic,
 
