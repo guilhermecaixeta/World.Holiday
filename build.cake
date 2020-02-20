@@ -107,7 +107,7 @@ private string GetPackageVersion()
     });
 
     Information($"Git Semantic Version: {JsonConvert.SerializeObject(gitVersion)}");
-    
+
     return gitVersion.NuGetVersionV2;
 }
 /* END */
