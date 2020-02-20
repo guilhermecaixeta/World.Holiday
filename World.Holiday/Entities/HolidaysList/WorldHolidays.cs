@@ -101,6 +101,7 @@ namespace World.Holidays.Entities.HolidaysList
                     ECulture.ptBR | ECulture.esES),
                 //PT-PT
                 new Holiday(Year, 06, 13, false, EHolidayName.StAnthonysDay.GetDescription(Culture), ECulture.ptPT),
+                new Holiday(Year, 06, 10, true, EHolidayName.PortugalDay.GetDescription(Culture), ECulture.ptPT),
                 //ES-ES
                 new Holiday(Year, 06, 09, false,EHolidayName.DayOfMurciaRegion.GetDescription(Culture), ECulture.esES),
 
@@ -174,7 +175,7 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 11, 11, true, EHolidayName.VeteransDay.GetDescription(Culture), ECulture.enUS),
                 new Holiday(Year, 11, 26, true, EHolidayName.Thanksgiving.GetDescription(Culture), ECulture.enUS),
                 //PT-ES
-                new Holiday(Year, 11, 01, true, EHolidayName.AllSaintsDay.GetDescription(Culture), ECulture.ptPT),
+                new Holiday(Year, 11, 01, true, EHolidayName.AllSaintsDay.GetDescription(Culture), CultureptPTES),
                 //ES-ES
                 new Holiday(Year, 11, 09, true, EHolidayName.VirginOfAlmudena.GetDescription(Culture), ECulture.esES),
 

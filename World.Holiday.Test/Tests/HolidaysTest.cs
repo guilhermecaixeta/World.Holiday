@@ -30,12 +30,12 @@ namespace World.Holidays.Test.Tests
             Assert.AreEqual(holidaysInMonth, count);
         }
 
-        [TestCase(ECulture.ptBR)]
-        [TestCase(ECulture.ptPT)]
-        [TestCase(ECulture.enUS)]
-        [TestCase(ECulture.enCA)]
-        [TestCase(ECulture.esES)]
-        public void HolidayDate_HolidaysInMonth_DateInDays_Year(ECulture culture)
+        [TestCase(25, ECulture.ptBR)]
+        [TestCase(19, ECulture.ptPT)]
+        [TestCase(13, ECulture.enUS)]
+        [TestCase(19, ECulture.enCA)]
+        [TestCase(27, ECulture.esES)]
+        public void HolidayDate_HolidaysInMonth_DateInDays_Year(int totalHolidays, ECulture culture)
         {
             var fakeStartDate = new DateTime(Year, 01, 01);
 
@@ -51,7 +51,9 @@ namespace World.Holidays.Test.Tests
                 }
             }
 
-            Assert.AreEqual(0, count);
+            var value = (count, fakeHolidays.Count());
+
+            Assert.AreEqual((0, totalHolidays), value);
 
         }
 
