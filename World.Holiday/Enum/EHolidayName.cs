@@ -44,7 +44,7 @@ namespace World.Holidays.Enum
         [DescriptionHoliday("Día de la Madre", ECulture.esES)]
         MotherDay,
 
-        [DescriptionHoliday("Labour Day", ECulture.enCA)]
+        [DescriptionHoliday("Labour Day", EnCulture)]
         [DescriptionHoliday("Dia do Trabalho", PtCulture)]
         [DescriptionHoliday("Día del Trabajo", ECulture.esES)]
         LabourDay,
@@ -143,7 +143,7 @@ namespace World.Holidays.Enum
         [DescriptionHoliday("Día de Canarias", ECulture.esES)]
         CanariasDay,
 
-        [DescriptionHoliday("Dia de Santo António", ECulture.esES)]
+        [DescriptionHoliday("Dia de Santo António", ECulture.ptPT)]
         StAnthonysDay,
 
         [DescriptionHoliday("Día de la Región de Murcia", ECulture.esES)]
