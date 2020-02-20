@@ -204,7 +204,7 @@ namespace World.Holidays.Extensions
             return new[]
             {
                 new Holiday(EasterDay.AddDays(-3), false, EHolidayName.HolyThursday.GetDescription(culture), ECulture.esES),
-                new Holiday(EasterDay.AddDays(-2), true, EHolidayName.GoodFriday.GetDescription(culture), AllCultures),
+                new Holiday(EasterDay.AddDays(-2), true, EHolidayName.GoodFriday.GetDescription(culture), EasterMonday | ECulture.ptBR),
                 new Holiday(EasterDay.AddDays(-46), true, EHolidayName.AshWednesday.GetDescription(culture), ECulture.ptBR),
                 new Holiday(EasterDay.AddDays(-47), culture != ECulture.ptPT, EHolidayName.MardiGrass.GetDescription(culture), PtCulture),
                 new Holiday(EasterDay.AddDays(-48), true, EHolidayName.MardiGrass.GetDescription(culture), ECulture.ptBR),
