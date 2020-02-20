@@ -4,8 +4,6 @@
 # Feel free to change this file to fit your needs.
 ##########################################################################
 
-<#
-
 .SYNOPSIS
 This is a Powershell script to bootstrap a Cake build.
 

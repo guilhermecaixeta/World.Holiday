@@ -56,7 +56,7 @@ Task("Test")
 
 Task("Create-Nuget-Pack")
 .IsDependentOn("Test")
-// .WithCriteria(ShouldRunRelease())
+.WithCriteria(ShouldRunRelease())
 .Does(() =>
 {
     var version = GetPackageVersion();
@@ -69,7 +69,7 @@ Task("Create-Nuget-Pack")
             {
                 Configuration = configuration,
                 OutputDirectory = artifactDirectory,
-                // ArgumentCustomization= args => args.Append($"/p:Version={version}")
+                ArgumentCustomization= args => args.Append($"/p:Version={version}")
             });
     }
 });
@@ -97,7 +97,8 @@ RunTarget(target);
 /* END - RUN */
 
 /* BEGIN - METHODS */
-private bool ShouldRunRelease() => AppVeyor.IsRunningOnAppVeyor && AppVeyor.Environment.Repository.Tag.IsTag;
+private bool ShouldRunRelease() => AppVeyor.IsRunningOnAppVeyor 
+// && AppVeyor.Environment.Repository.Tag.IsTag;
 
 private string GetPackageVersion()
 {
