@@ -20,6 +20,12 @@ Currently this package support the cultures:
   * Add support to new countries: Spain and Canada
   * Add code quality
   * Add cake support to automate the pipeline
+  * Add new extension methods to get holidays, in intervel and from the currently date
+  * Add new exceptions 
+  * Add unity tests
+  * The package it's did restructured to support more than one holiday per day
+  * the Locale has been changed to ECulture
+  * The name of holidays can e accessed in EHolidaysName
   * If one day has more than one holiday, the names of all holidays could be accessed in:
     ```
     "DateTimeHoliday":{
@@ -72,6 +78,8 @@ Holidays in each culture:
       *	Todos os Santos
       *	Restauração da Independência
       *	Imaculada Conceição
+  - en-CA and es-ES:
+      * You will can find all the holidays that are in this package by the link: [Feriados do Mundo](https://feriados-do-mundo.com.br/)
 
 ```
 ...some logic
@@ -89,7 +97,11 @@ Returning JSON like this
 }
 */
 ```
+### Last considerations
 
+This package has been made with the purpose help in the development based in the .net framework/core environment
+If you find an error in this package open an issue this help me to improve the package.
+If you want add new Culture in this project fell free to join to me, open a PR and start to contribute.
 
 ## Status
 
