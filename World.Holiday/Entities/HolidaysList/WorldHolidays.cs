@@ -75,7 +75,7 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 05, 01,
                     true,
                     EHolidayName.LabourDay.GetDescription(Culture),
-                    CultureptPTES),
+                    CultureptPTES | ECulture.ptBR),
                 //EN-US
                 new Holiday(Year, 05, 25, true, EHolidayName.MemorialDay.GetDescription(Culture),ECulture.enUS),
                 //ES-ES
