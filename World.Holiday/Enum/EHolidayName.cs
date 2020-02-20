@@ -20,7 +20,7 @@ namespace World.Holidays.Enum
         ValentineDay,
 
         [DescriptionHoliday("Good Friday", ECulture.enCA)]
-        [DescriptionHoliday("Sexta Feira Santa", ECulture.ptBR)]
+        [DescriptionHoliday("Sexta Feira Santa", PtCulture)]
         [DescriptionHoliday("Viernes Santo", ECulture.esES)]
         GoodFriday,
 
@@ -28,7 +28,7 @@ namespace World.Holidays.Enum
         AshWednesday,
 
         [DescriptionHoliday("Mardi Grass", ECulture.enUS)]
-        [DescriptionHoliday("Carnaval", ECulture.ptBR)]
+        [DescriptionHoliday("Carnaval", PtCulture)]
         MardiGrass,
 
         [DescriptionHoliday("Corpus Christi", PtCulture)]

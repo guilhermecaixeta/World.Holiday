@@ -17,7 +17,7 @@ var artifactDirectory = MakeAbsolute(Directory("./artifacts"));
 Setup(context =>
 {
     CleanDirectory(artifactDirectory);
-    CleanDirectories("./src/**/obj");
+    CleanDirectories("./**/obj");
 });
 /* END */
 
@@ -28,7 +28,7 @@ Task("Default")
 Task("Build").
     Does(() => 
     {
-        foreach (var project in GetFiles("./src/Generic.Repository.EFCore.sln"))
+        foreach (var project in GetFiles("./World.Holiday.sln"))
         {
             DotNetCoreBuild(
                 project.GetDirectory().FullPath,
@@ -43,7 +43,7 @@ Task("Test")
 .IsDependentOn("Build")
 .Does(() =>
 {
-    foreach(var project in GetFiles("./tests/**/*.csproj"))
+    foreach(var project in GetFiles("./World.Holiday.Test/*.csproj"))
     {
         DotNetCoreTest(
             project.GetDirectory().FullPath,
@@ -61,7 +61,7 @@ Task("Create-Nuget-Pack")
 {
     var version = GetPackageVersion();
 
-    foreach (var project in GetFiles("./src/**/*.csproj"))
+    foreach (var project in GetFiles("./World.Holiday/*.csproj"))
     {
         DotNetCorePack(
             project.GetDirectory().FullPath,
@@ -106,7 +106,7 @@ private string GetPackageVersion()
     });
 
     Information($"Git Semantic Version: {JsonConvert.SerializeObject(gitVersion)}");
-    
+
     return gitVersion.NuGetVersionV2;
 }
 /* END */
