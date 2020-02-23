@@ -30,11 +30,11 @@ namespace World.Holidays.Test.Tests
             Assert.AreEqual(holidaysInMonth, count);
         }
 
-        [TestCase(25, ECulture.ptBR)]
+        [TestCase(26, ECulture.ptBR)]
         [TestCase(19, ECulture.ptPT)]
-        [TestCase(13, ECulture.enUS)]
+        [TestCase(14, ECulture.enUS)]
         [TestCase(19, ECulture.enCA)]
-        [TestCase(27, ECulture.esES)]
+        [TestCase(28, ECulture.esES)]
         public void HolidayDate_HolidaysInMonth_DateInDays_Year(int totalHolidays, ECulture culture)
         {
             var fakeStartDate = new DateTime(Year, 01, 01);
@@ -111,7 +111,7 @@ namespace World.Holidays.Test.Tests
 
         [TestCase(Year, 07, 25, ECulture.esES, false)]
         [TestCase(Year, 08, 15, ECulture.esES, true)]
-        [TestCase(Year, 05, 22, ECulture.ptPT, false)]
+        [TestCase(Year, 05, 21, ECulture.ptPT, false)]
         [TestCase(Year, 12, 08, ECulture.ptPT, true)]
         [TestCase(Year, 04, 21, ECulture.ptBR, true)]
         [TestCase(Year, 12, 08, ECulture.ptBR, false)]
@@ -135,15 +135,16 @@ namespace World.Holidays.Test.Tests
             }
         }
 
-        [TestCase(Year, 05, 22, ECulture.ptPT)]
+        [TestCase(Year, 05, 21, ECulture.ptPT)]
         [TestCase(Year, 05, 03, ECulture.ptPT)]
         [TestCase(Year, 05, 10, ECulture.ptBR)]
         [TestCase(Year, 08, 09, ECulture.ptBR)]
         [TestCase(Year, 05, 10, ECulture.enCA)]
-        [TestCase(Year, 06, 21, ECulture.enCA)]
+        [TestCase(Year, 06, 21, ECulture.enCA, 2)]
+        [TestCase(Year, 05, 10, ECulture.enCA)]
         [TestCase(Year, 04, 12, ECulture.esES)]
         [TestCase(Year, 04, 09, ECulture.esES)]
-        public void HolidayDate_ValidateMobileHolidays(int year, int month, int day, ECulture culture)
+        public void HolidayDate_ValidateMobileHolidays(int year, int month, int day, ECulture culture, int total = 1)
         {
             var fakeDate = new DateTime(year, month, day);
 
@@ -151,7 +152,7 @@ namespace World.Holidays.Test.Tests
 
             if (fakeHoliday.HasHoliday)
             {
-                Assert.AreEqual(1, fakeHoliday.Holidays.Count);
+                Assert.AreEqual(total, fakeHoliday.Holidays.Count);
             }
             else
             {

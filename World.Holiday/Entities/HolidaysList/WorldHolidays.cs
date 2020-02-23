@@ -25,7 +25,8 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 01, 01, true, EHolidayName.NewYear.GetDescription(Culture), AllCultures),
                 //ES-ES
                 new Holiday(Year, 01, 06, true, EHolidayName.Epiphany.GetDescription(Culture), ECulture.esES),
-
+                //EN-US
+                new Holiday(Year, 01, 20, true, EHolidayName.BirthdayMartinLutherKingJr.GetDescription(Culture), ECulture.enUS),
 #endregion January
 
 #region February
@@ -131,7 +132,7 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 08, 15,
                             IsPtEs(),
                             EHolidayName.AssumptionOfMaria.GetDescription(Culture),
-                            CultureptPTES),
+                            CultureptPTES| ECulture.ptBR),
 
 #endregion August
 
@@ -159,7 +160,7 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 10, 05, true, EHolidayName.ImplantationOfRepublic.GetDescription(Culture), ECulture.ptPT),
                 //ES-ES
                 new Holiday(Year, 10, 09, true, EHolidayName.DayOfValencianCommunity.GetDescription(Culture), ECulture.esES),
-                new Holiday(Year, 10, 09, true, EHolidayName.NationalFiestaOfSpain.GetDescription(Culture), ECulture.esES),
+                new Holiday(Year, 10,12, true, EHolidayName.NationalFiestaOfSpain.GetDescription(Culture), ECulture.esES),
 
 #endregion October
 
@@ -191,7 +192,7 @@ namespace World.Holidays.Entities.HolidaysList
                 new Holiday(Year, 12, 08,
                             IsPtEs(),
                             EHolidayName.ImmaculateConception.GetDescription(Culture),
-                            PtCulture),
+                            PtCulture | ECulture.esES),
                 // ALL
                 new Holiday(Year, 12, 25, true, EHolidayName.ChristmasDay.GetDescription(Culture), AllCultures),
                 // ES-ES
