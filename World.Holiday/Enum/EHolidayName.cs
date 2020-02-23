@@ -220,5 +220,7 @@ namespace World.Holidays.Enum
 
         [DescriptionHoliday("Veterans Day", ECulture.enUS)]
         VeteransDay,
+        [DescriptionHoliday("Birthday of Martin Luther King Jr.", ECulture.enUS)]
+        BirthdayMartinLutherKingJr,
     }
 }
