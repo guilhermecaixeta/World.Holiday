@@ -33,11 +33,11 @@ Currently this package support the cultures:
   * Add the Mathin Luther King Jr. Birthday on calender
   * Fix a holiday names. 
 
-## Holidays
+### Holidays
 The Holidays are implemented using this link, [Feriados do Mundo](https://feriados-do-mundo.com.br/) as reference.
 
 
-### DateTimeHoliday Structure
+## DateTimeHoliday Structure
 ```
 ...some logic
 var dataHoliday = new DateTime().IsHoliday(ECulture.ptBR);
@@ -45,17 +45,17 @@ var dataHoliday = new DateTime().IsHoliday(ECulture.ptBR);
 /*
 Returning JSON like this
 {
-  "Date": "2019-03-05T00:00:00",
-  "IsHoliday": true,
+  "Date": "{DateTime}",
+  "IsHoliday": {bool},
   "Holidays": 
   [
-    "Some holiday..."
+    {IReadOnly<Holiday>}
   ]
 }
 */
 ```
 
-### Last considerations
+## Final Considerations
 
 This package has been made with the purpose help in the development based in the .net framework/core environment
 If you find an error in this package open an issue this help me to improve the package.
@@ -63,14 +63,14 @@ If you want add new Culture in this project fell free to join to me, open a PR a
 
 ## Status
 
-### Git Actions
+#### Git Actions
 ![ASP.NET Core CI](https://github.com/guilhermecaixeta/World.Holiday/workflows/ASP.NET%20Core%20CI/badge.svg?branch=master)
 
-### Travis CI
+#### Travis CI
 [![Build Status](https://travis-ci.org/guilhermecaixeta/World.Holiday.svg?branch=master)](https://travis-ci.org/guilhermecaixeta/World.Holiday)
 
-### AppVeyor
+#### AppVeyor
 [![Build status](https://ci.appveyor.com/api/projects/status/rs5ranyllu0g9h08?svg=true)](https://ci.appveyor.com/project/guilhermecaixeta/world-holiday)
 
-### Code Quality
+#### Code Quality
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a07c597ca4864152ae6bbb88ecb15ada)](https://www.codacy.com/manual/guilhermecaixeta/World.Holiday?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=guilhermecaixeta/World.Holiday&amp;utm_campaign=Badge_Grade)
