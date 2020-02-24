@@ -11,7 +11,7 @@ Currently this package support the cultures:
 * en-CA (All holidays are in English)
 * es-ES
 
-## Improvements for new version
+## Description - Improvements
 
 ### 1.1.2
   For this version some improvements was make. They are:
@@ -26,14 +26,7 @@ Currently this package support the cultures:
   * The package it's did restructured to support more than one holiday per day
   * the Locale has been changed to ECulture
   * The name of holidays can e accessed in EHolidaysName
-  * If one day has more than one holiday, the names of all holidays could be accessed in:
-    ```
-    "DateTimeHoliday":{
-      "HolidayName":[
-        values....
-      ]
-    }
-    ```
+  
 ### 1.1.3
   For this version, just bug fixs had been made.
   * Bug fix in a mobile date (Maria Assumption)
@@ -54,7 +47,7 @@ Returning JSON like this
 {
   "Date": "2019-03-05T00:00:00",
   "IsHoliday": true,
-  "NameHoliday": 
+  "Holidays": 
   [
     "Some holiday..."
   ]
