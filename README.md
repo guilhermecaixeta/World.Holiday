@@ -13,7 +13,7 @@ Currently this package support the cultures:
 
 ## Improvements for new version
 
-### 1.0.1
+### 1.1.2
   For this version some improvements was make. They are:
   * Upgrade to asp.net standard 2.1
   * Package was re-writed with the focus to improving performacing, currently this new version are almost 3x times than faster than backward.
@@ -34,53 +34,17 @@ Currently this package support the cultures:
       ]
     }
     ```
+### 1.1.3
+  For this version, just bug fixs had been made.
+  * Bug fix in a mobile date (Maria Assumption)
+  * Add the Mathin Luther King Jr. Birthday on calender
+  * Fix a holiday names. 
 
 ## Holidays
-Holidays in each culture:
-  - World Holidays
-      * Christmas;
-      * New Year's Day;
-      * Valentine's Day;
-  - pt-Br:
-      * Carnaval;
-      * Sexta-Feira Santa;
-      * Páscoa;
-      * Tiradentes;
-      * Dia do trabalhador;
-      * Dia das mães;
-      * Corpus Cristi;
-      * São joão;
-      * Dia dos pais;
-      * Independência do Brasil;
-      * Dia das Crianças;
-      * Dia de Finados;
-      * Proclamação da República;
-      * Dia da Consciência Negra.      
-  - en-Us:
-      * Birthday of Martin Luther King Jr.;
-      * Washington's Birthday;
-      * Memorial Day;
-      * Independence Day;
-      * Columbus Day;
-      * Veterans Day;
-      * Thanksgiving Day.
-  - pt-Pt:
-      *	Carnaval
-      *	Sexta-Feira Santa 
-      *	Páscoa 
-      *	Dia da Liberdade
-      *	Dia do Trabalhador 
-      *	Dia das Mães 
-      *	Dia de Portugal
-      *	Corpo de Deus 
-      *	Assunção de Maria
-      *	Implantação da República
-      *	Todos os Santos
-      *	Restauração da Independência
-      *	Imaculada Conceição
-  - en-CA and es-ES:
-      * You will can find all the holidays that are in this package by the link: [Feriados do Mundo](https://feriados-do-mundo.com.br/)
+The Holidays are implemented using this link, [Feriados do Mundo](https://feriados-do-mundo.com.br/) as reference.
 
+
+### DateTimeHoliday Structure
 ```
 ...some logic
 var dataHoliday = new DateTime().IsHoliday(ECulture.ptBR);
@@ -97,6 +61,7 @@ Returning JSON like this
 }
 */
 ```
+
 ### Last considerations
 
 This package has been made with the purpose help in the development based in the .net framework/core environment
