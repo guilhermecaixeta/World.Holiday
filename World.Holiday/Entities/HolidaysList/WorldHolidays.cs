@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using World.Holidays.Enum;
 using World.Holidays.Extensions;
 using static World.Holidays.Enum.Culture;
@@ -7,18 +8,40 @@ namespace World.Holidays.Entities.HolidaysList
 {
     internal class WorldHolidays
     {
+        /// <summary>
+        /// The culture
+        /// </summary>
         private readonly ECulture Culture;
 
+        /// <summary>
+        /// The year
+        /// </summary>
         private readonly int Year;
 
-        public WorldHolidays(ECulture culture, int year)
+        /// <summary>
+        /// The date time
+        /// </summary>
+        private DateTime DateTime;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorldHolidays"/> class.
+        /// </summary>
+        /// <param name="culture">The culture.</param>
+        /// <param name="datetime">The datetime.</param>
+        public WorldHolidays(ECulture culture, DateTime datetime)
         {
+            DateTime = datetime;
             Culture = culture;
-            Year = year;
+            Year = datetime.Year;
         }
 
-        public IEnumerable<Holiday> Holidays() =>
-            new List<Holiday>
+        /// <summary>
+        /// Holidayses this instance.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Holiday> Holidays() 
+            { 
+            var worldHolidays = new List<Holiday>
             {
 #region January
 
@@ -200,6 +223,11 @@ namespace World.Holidays.Entities.HolidaysList
 
 #endregion December
             };
+
+            worldHolidays.AddRange(FindMobileHolidays.Holidays(DateTime, Culture));
+
+            return worldHolidays;
+    }
 
         /// <summary>
         /// Determines whether [is pt es].

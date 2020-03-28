@@ -21,6 +21,8 @@ namespace World.Holidays.Extensions
         /// <returns></returns>
         public static IEnumerable<Holiday> GetFromCurrentlyDate(int days, ECulture culture)
         {
+            DateTimeHolidayValidations.IntIsValid(days);
+
             var date = DateTime.UtcNow;
 
             return GetInInterval(date, days, culture);
@@ -36,13 +38,6 @@ namespace World.Holidays.Extensions
         /// <exception cref="MinDateIsBiggerThanMaxDate"></exception>
         public static IEnumerable<Holiday> GetInInterval(DateTime dateMin, DateTime dateMax, ECulture culture)
         {
-            DateTimeHolidayValidations.DateIsValid(dateMin, dateMax);
-
-            if (dateMin.IsBiggerThan(dateMax))
-            {
-                throw new MinDateIsBiggerThanMaxDate(dateMin, dateMax);
-            }
-
             var holidays = InInterval(dateMin, dateMax, culture);
 
             return holidays;
@@ -57,8 +52,6 @@ namespace World.Holidays.Extensions
         /// <returns></returns>
         public static IEnumerable<Holiday> GetInInterval(DateTime date, int days, ECulture culture)
         {
-            DateTimeHolidayValidations.IntIsValid(days);
-
             return GetInInterval(date, date.AddDays(days), culture);
         }
 
@@ -70,35 +63,39 @@ namespace World.Holidays.Extensions
         /// <returns></returns>
         public static DateTimeHoliday IsHoliday(this DateTime date, ECulture culture)
         {
-
             DateTimeHolidayValidations.DateIsValid(date);
 
-            var worldHolidays = new WorldHolidays(culture, date.Year).Holidays();
+            var worldHolidays = new WorldHolidays(culture, date).Holidays();
 
             var holidays = worldHolidays.
-                Where(x => (culture & x.Culture) == culture && x.Date.CompareTo(date.Date) == 0);
-
-            var mobileHoliday = date.GetMobileHoliday(culture);
-
-            holidays = holidays.Concat(mobileHoliday);
+                Where(x => x != null && (culture & x.Culture) == culture && x.Date.CompareTo(date.Date) == 0);
 
             var dateHoliday = new DateTimeHoliday(date, holidays);
 
             return dateHoliday;
         }
 
+        /// <summary>
+        /// Ins the interval.
+        /// </summary>
+        /// <param name="dateMin">The date minimum.</param>
+        /// <param name="dateMax">The date maximum.</param>
+        /// <param name="culture">The culture.</param>
+        /// <returns></returns>
+        /// <exception cref="MinDateIsBiggerThanMaxDate"></exception>
         private static IEnumerable<Holiday> InInterval(DateTime dateMin, DateTime dateMax, ECulture culture)
         {
             DateTimeHolidayValidations.DateIsValid(dateMin, dateMax);
 
-            var worldHolidays = new WorldHolidays(culture, dateMin.Year).Holidays();
+            if (dateMin.IsBiggerThan(dateMax))
+            {
+                throw new MinDateIsBiggerThanMaxDate(dateMin, dateMax);
+            }
+
+            var worldHolidays = new WorldHolidays(culture, dateMin).Holidays();
 
             var holidays = worldHolidays.
-                Where(x => (culture & x.Culture) == culture && x.Date.IsBetween(dateMin.Date, dateMax.Date));
-
-            var mobileHoliday = FindMobileHolidays.GetMobileHolidayInInterval(dateMin, dateMax, culture);
-
-            holidays = holidays.Concat(mobileHoliday);
+                Where(x => x != null && (culture & x.Culture) == culture && x.Date.IsBetween(dateMin.Date, dateMax.Date));
 
             return holidays;
         }

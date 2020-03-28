@@ -6,6 +6,9 @@ using static World.Holidays.Enum.Culture;
 
 namespace World.Holidays.Extensions
 {
+    /// <summary>
+    /// Mobile holidays.
+    /// </summary>
     internal static class FindMobileHolidays
     {
         /// <summary>
@@ -13,51 +16,10 @@ namespace World.Holidays.Extensions
         /// </summary>
         private static readonly int DaysOnWeek = 7;
 
+        /// <summary>
+        /// The easter day
+        /// </summary>
         private static DateTime EasterDay;
-
-        /// <summary>
-        /// Determines whether [is mobile holiday] [the specified culture].
-        /// </summary>
-        /// <param name="dateTime">The date time.</param>
-        /// <param name="culture">The culture.</param>
-        /// <returns></returns>
-        public static IEnumerable<Holiday> GetMobileHoliday(this DateTime dateTime, ECulture culture)
-        {
-            var holidays = Holidays(dateTime, culture);
-
-            foreach (var holiday in holidays)
-            {
-                if (holiday != null && ((culture & holiday.Culture) == culture) && holiday.Date.CompareTo(dateTime.Date) == 0)
-                {
-                    yield return holiday;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the mobile holiday in interval.
-        /// </summary>
-        /// <param name="dateTimeStart">The date time start.</param>
-        /// <param name="dateTimeEnd">The date time end.</param>
-        /// <param name="culture">The culture.</param>
-        /// <returns></returns>
-        public static IEnumerable<Holiday> GetMobileHolidayInInterval(DateTime dateTimeStart, DateTime dateTimeEnd, ECulture culture)
-        {
-            var holidays = Holidays(dateTimeStart, culture);
-
-            foreach (var holiday in holidays)
-            {
-                if (holiday != null)
-                {
-                    var isBetween = holiday.Date.IsBetween(dateTimeStart.Date, dateTimeEnd.Date);
-
-                    if (((culture & holiday.Culture) == culture) && isBetween)
-                    {
-                        yield return holiday;
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Calculates the mobile holidays.
@@ -84,7 +46,8 @@ namespace World.Holidays.Extensions
         /// <summary>
         /// Gets the days left to.
         /// </summary>
-        /// <param name="dateTime">The date time.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="month">The month.</param>
         /// <param name="sundaysUntilHoliday">The sundays until holiday.</param>
         /// <returns></returns>
         private static DateTime GetDaysLeftTo(int year, int month, int sundaysUntilHoliday)
@@ -108,11 +71,11 @@ namespace World.Holidays.Extensions
         /// <summary>
         /// Gets the fathers day.
         /// </summary>
-        /// <param name="date">The date.</param>
+        /// <param name="dateTime">The date time.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
         private static Holiday GetFathersDay(DateTime dateTime, ECulture culture)
-        { 
+        {
             if ((culture & (EnCulture | ECulture.ptBR)) != culture)
             {
                 return null;
@@ -140,12 +103,8 @@ namespace World.Holidays.Extensions
         /// <param name="dateTime">The date time.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
-        private static Holiday GetMothersDay(DateTime dateTime, ECulture culture)
-        {
-            var holiday = GetParentDay(dateTime.Year, 5, culture, EHolidayName.MotherDay, true);
-
-            return holiday;
-        }
+        private static Holiday GetMothersDay(DateTime dateTime, ECulture culture) =>
+            GetParentDay(dateTime.Year, 5, culture, EHolidayName.MotherDay, true);
 
         /// <summary>
         /// Gets the parent day.
@@ -199,7 +158,7 @@ namespace World.Holidays.Extensions
         /// <summary>
         /// The holidays
         /// </summary>
-        private static Holiday[] Holidays(DateTime dateTime, ECulture culture)
+        public static Holiday[] Holidays(DateTime dateTime, ECulture culture)
         {
             CalculateEasterDay(dateTime);
 
