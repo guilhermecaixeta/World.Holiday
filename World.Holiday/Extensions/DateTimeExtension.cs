@@ -18,13 +18,9 @@ namespace World.Holidays.Extensions
         /// </returns>
         public static bool IsBetween(this DateTime dateBetween, DateTime dateMin, DateTime dateMax)
         {
-            var ticksDateBetween = dateBetween.Ticks;
-            var ticksDateMax = dateMax.Ticks;
-            var ticksDateMin = dateMin.Ticks;
+            DateTimeHolidayValidations.DateIsValid(dateBetween, dateMin, dateMax);
 
-            DateTimeHolidayValidations.DateIsValid(ticksDateBetween, ticksDateMax, ticksDateMin);
-
-            var isValid = ticksDateMax >= ticksDateBetween && ticksDateMin <= ticksDateBetween;
+            var isValid = dateMax >= dateBetween && dateMin <= dateBetween;
 
             return isValid;
         }
@@ -39,12 +35,9 @@ namespace World.Holidays.Extensions
         /// </returns>
         public static bool IsBiggerThan(this DateTime d1, DateTime d2)
         {
-            var d1Ticks = d1.Ticks;
-            var d2Ticks = d2.Ticks;
+            DateTimeHolidayValidations.DateIsValid(d1, d2);
 
-            DateTimeHolidayValidations.DateIsValid(d2Ticks, d1Ticks);
-
-            return d1Ticks > d2Ticks;
+            return d1 > d2;
         }
     }
 }

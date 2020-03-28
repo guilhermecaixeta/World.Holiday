@@ -18,32 +18,45 @@ namespace World.Holidays.Extensions
         /// <summary>
         /// Determines whether [is mobile holiday] [the specified culture].
         /// </summary>
-        /// <param name="date">The date.</param>
+        /// <param name="dateTime">The date time.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
-        public static IEnumerable<Holiday> GetMobileHoliday(long ticks, ECulture culture)
+        public static IEnumerable<Holiday> GetMobileHoliday(this DateTime dateTime, ECulture culture)
         {
-            var holidays = new List<Holiday>();
-            var date = new DateTime(ticks);
-            var month = date.Month;
-            var year = date.Year;
+            var holidays = Holidays(dateTime, culture);
 
-            var parentDate = GetMothersDay(ticks, year, month, culture) ?? GetFathersDay(ticks, year, month, culture);
-
-            if (parentDate != null)
+            foreach (var holiday in holidays)
             {
-                holidays.Add(parentDate);
-            }
-
-            foreach (var holiday in Holidays(date, culture))
-            {
-                if (((culture & holiday.Culture) == culture) && holiday.Ticks == ticks)
+                if (holiday != null && ((culture & holiday.Culture) == culture) && holiday.Date.CompareTo(dateTime.Date) == 0)
                 {
-                    holidays.Add(holiday);
+                    yield return holiday;
                 }
             }
+        }
 
-            return holidays;
+        /// <summary>
+        /// Gets the mobile holiday in interval.
+        /// </summary>
+        /// <param name="dateTimeStart">The date time start.</param>
+        /// <param name="dateTimeEnd">The date time end.</param>
+        /// <param name="culture">The culture.</param>
+        /// <returns></returns>
+        public static IEnumerable<Holiday> GetMobileHolidayInInterval(DateTime dateTimeStart, DateTime dateTimeEnd, ECulture culture)
+        {
+            var holidays = Holidays(dateTimeStart, culture);
+
+            foreach (var holiday in holidays)
+            {
+                if (holiday != null)
+                {
+                    var isBetween = holiday.Date.IsBetween(dateTimeStart.Date, dateTimeEnd.Date);
+
+                    if (((culture & holiday.Culture) == culture) && isBetween)
+                    {
+                        yield return holiday;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -71,10 +84,10 @@ namespace World.Holidays.Extensions
         /// <summary>
         /// Gets the days left to.
         /// </summary>
-        /// <param name="date">The date.</param>
+        /// <param name="dateTime">The date time.</param>
         /// <param name="sundaysUntilHoliday">The sundays until holiday.</param>
         /// <returns></returns>
-        private static DateTime? GetDaysLeftTo(long ticks, int year, int month, int sundaysUntilHoliday)
+        private static DateTime GetDaysLeftTo(int year, int month, int sundaysUntilHoliday)
         {
             var firstDay = new DateTime(year, month, 1);
 
@@ -87,14 +100,9 @@ namespace World.Holidays.Extensions
                 daysLeft = (DaysOnWeek * sundaysUntilHoliday) - (int)dayOfWeek;
             }
 
-            var parentDate = firstDay.AddDays(daysLeft).Ticks;
+            var parentDate = firstDay.AddDays(daysLeft);
 
-            if (ticks == parentDate)
-            {
-                return new DateTime(parentDate);
-            }
-
-            return null;
+            return parentDate;
         }
 
         /// <summary>
@@ -103,23 +111,25 @@ namespace World.Holidays.Extensions
         /// <param name="date">The date.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
-        private static Holiday GetFathersDay(long ticks, int year, int month, ECulture culture)
-        {
+        private static Holiday GetFathersDay(DateTime dateTime, ECulture culture)
+        { 
             if ((culture & (EnCulture | ECulture.ptBR)) != culture)
             {
                 return null;
             }
-            if ((culture & ECulture.ptBR) == culture && month != 8)
+
+            var month = 0;
+
+            if ((culture & ECulture.ptBR) == culture)
             {
-                return null;
+                month = 8;
+            }
+            if ((culture & EnCulture) == culture)
+            {
+                month = 6;
             }
 
-            if ((culture & EnCulture) == culture && month != 6)
-            {
-                return null;
-            }
-
-            var holiday = GetParentDay(ticks, year, month, culture, EHolidayName.FatherDay, false);
+            var holiday = GetParentDay(dateTime.Year, month, culture, EHolidayName.FatherDay, false);
 
             return holiday;
         }
@@ -127,17 +137,12 @@ namespace World.Holidays.Extensions
         /// <summary>
         /// Gets the mothers day.
         /// </summary>
-        /// <param name="date">The date.</param>
+        /// <param name="dateTime">The date time.</param>
         /// <param name="culture">The culture.</param>
         /// <returns></returns>
-        private static Holiday GetMothersDay(long ticks, int year, int month, ECulture culture)
+        private static Holiday GetMothersDay(DateTime dateTime, ECulture culture)
         {
-            if (month != 5)
-            {
-                return null;
-            }
-
-            var holiday = GetParentDay(ticks, year, month, culture, EHolidayName.MotherDay, true);
+            var holiday = GetParentDay(dateTime.Year, 5, culture, EHolidayName.MotherDay, true);
 
             return holiday;
         }
@@ -145,23 +150,19 @@ namespace World.Holidays.Extensions
         /// <summary>
         /// Gets the parent day.
         /// </summary>
-        /// <param name="date">The date.</param>
+        /// <param name="year">The year.</param>
+        /// <param name="month">The month.</param>
         /// <param name="culture">The culture.</param>
         /// <param name="holidayName">Name of the holiday.</param>
         /// <param name="isNational">if set to <c>true</c> [is national].</param>
         /// <returns></returns>
-        private static Holiday GetParentDay(long ticks, int year, int month, ECulture culture, EHolidayName holidayName, bool isNational)
+        private static Holiday GetParentDay(int year, int month, ECulture culture, EHolidayName holidayName, bool isNational)
         {
             var sundays = GetTotalSunday(holidayName, culture);
 
-            var parentDay = GetDaysLeftTo(ticks, year, month, sundays);
+            var parentDate = GetDaysLeftTo(year, month, sundays);
 
-            if (!parentDay.HasValue)
-            {
-                return null;
-            }
-
-            return new Holiday(parentDay.Value, isNational, holidayName.GetDescription(culture), culture);
+            return new Holiday(parentDate, isNational, holidayName.GetDescription(culture), culture);
         }
 
         /// <summary>
@@ -212,7 +213,9 @@ namespace World.Holidays.Extensions
                 new Holiday(EasterDay.AddDays(60), false, EHolidayName.CorpusChristi.GetDescription(culture), PtCulture | ECulture.esES),
                 new Holiday(EasterDay.AddDays(39), false, EHolidayName.AscensionThursday.GetDescription(culture), ECulture.ptPT),
                 new Holiday(EasterDay.AddDays(0), true, EHolidayName.EasterDay.GetDescription(culture), PtCulture | ECulture.esES),
-                new Holiday(EasterDay.AddDays(1), false, EHolidayName.EasterMonday.GetDescription(culture), EasterMonday)
+                new Holiday(EasterDay.AddDays(1), false, EHolidayName.EasterMonday.GetDescription(culture), EasterMonday),
+                GetMothersDay(dateTime, culture),
+                GetFathersDay(dateTime, culture)
             };
         }
     }

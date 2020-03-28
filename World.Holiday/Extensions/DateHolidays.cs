@@ -21,7 +21,7 @@ namespace World.Holidays.Extensions
         /// <returns></returns>
         public static IEnumerable<Holiday> GetFromCurrentlyDate(int days, ECulture culture)
         {
-            var date = DateTime.Now;
+            var date = DateTime.UtcNow;
 
             return GetInInterval(date, days, culture);
         }
@@ -36,23 +36,15 @@ namespace World.Holidays.Extensions
         /// <exception cref="MinDateIsBiggerThanMaxDate"></exception>
         public static IEnumerable<Holiday> GetInInterval(DateTime dateMin, DateTime dateMax, ECulture culture)
         {
-            DateTimeHolidayValidations.DateIsValid(dateMin.Ticks, dateMax.Ticks);
+            DateTimeHolidayValidations.DateIsValid(dateMin, dateMax);
 
             if (dateMin.IsBiggerThan(dateMax))
             {
                 throw new MinDateIsBiggerThanMaxDate(dateMin, dateMax);
             }
 
-            var holidays = new List<Holiday>();
+            var holidays = InInterval(dateMin, dateMax, culture);
 
-            var days = (dateMax - dateMin).Days;
-
-            for (var day = 0; day <= days; day++)
-            {
-                holidays.AddRange(dateMin.IsHoliday(culture).Holidays);
-
-                dateMin = dateMin.AddDays(1);
-            }
             return holidays;
         }
 
@@ -78,22 +70,37 @@ namespace World.Holidays.Extensions
         /// <returns></returns>
         public static DateTimeHoliday IsHoliday(this DateTime date, ECulture culture)
         {
-            var ticks = date.Date.Ticks;
 
-            DateTimeHolidayValidations.DateIsValid(ticks);
+            DateTimeHolidayValidations.DateIsValid(date);
 
-            var worldHolidays = new WorldHolidays(culture, date.Year).Holidays().ToList();
+            var worldHolidays = new WorldHolidays(culture, date.Year).Holidays();
 
             var holidays = worldHolidays.
-                Where(x => (culture & x.Culture) == culture && x.Ticks == ticks);
+                Where(x => (culture & x.Culture) == culture && x.Date.CompareTo(date.Date) == 0);
 
-            var mobileHoliday = FindMobileHolidays.GetMobileHoliday(ticks, culture);
+            var mobileHoliday = date.GetMobileHoliday(culture);
 
             holidays = holidays.Concat(mobileHoliday);
 
             var dateHoliday = new DateTimeHoliday(date, holidays);
 
             return dateHoliday;
+        }
+
+        private static IEnumerable<Holiday> InInterval(DateTime dateMin, DateTime dateMax, ECulture culture)
+        {
+            DateTimeHolidayValidations.DateIsValid(dateMin, dateMax);
+
+            var worldHolidays = new WorldHolidays(culture, dateMin.Year).Holidays();
+
+            var holidays = worldHolidays.
+                Where(x => (culture & x.Culture) == culture && x.Date.IsBetween(dateMin.Date, dateMax.Date));
+
+            var mobileHoliday = FindMobileHolidays.GetMobileHolidayInInterval(dateMin, dateMax, culture);
+
+            holidays = holidays.Concat(mobileHoliday);
+
+            return holidays;
         }
     }
 }

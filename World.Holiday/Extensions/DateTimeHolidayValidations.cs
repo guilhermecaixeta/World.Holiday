@@ -11,16 +11,16 @@ namespace World.Holidays.Extensions
         /// <param name="datesTicks">The dates ticks.</param>
         /// <exception cref="DateTimeMinMaxException"></exception>
         /// <exception cref="DateTime"></exception>
-        public static void DateIsValid(params long[] datesTicks)
+        public static void DateIsValid(params DateTime[] datesTicks)
         {
-            var ticksDateMax = DateTime.MaxValue.Date.Ticks;
-            var ticksDateMin = DateTime.MinValue.Date.Ticks;
+            var ticksDateMax = DateTime.MaxValue.Date;
+            var ticksDateMin = DateTime.MinValue.Date;
 
             foreach (var ticks in datesTicks)
             {
-                if (ticksDateMin == ticks || ticksDateMax == ticks)
+                if (ticksDateMin == ticks.Date || ticksDateMax == ticks.Date)
                 {
-                    throw new DateTimeMinMaxException(new DateTime(ticks));
+                    throw new DateTimeMinMaxException(ticks);
                 }
             }
         }
