@@ -41,15 +41,7 @@ namespace World.Holidays.Test.Tests
 
             var fakeHolidays = DateHolidays.GetInInterval(fakeStartDate, 365, culture);
 
-            var count = 0;
-
-            foreach (var fakeHoliday in fakeHolidays)
-            {
-                if (string.IsNullOrEmpty(fakeHoliday.Name))
-                {
-                    count++;
-                }
-            }
+            var count = fakeHolidays.Count(x => string.IsNullOrEmpty(x.Name));
 
             var value = (count, fakeHolidays.Count());
 
